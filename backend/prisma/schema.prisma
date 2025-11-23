@@ -22,7 +22,7 @@ model User {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
   caravans        Caravan[]
-  reservations    Reservation[] // Relation to Reservation model
+  reservations    Reservation[]
 }
 
 model Caravan {
@@ -36,7 +36,7 @@ model Caravan {
   updatedAt     DateTime      @updatedAt
   host          User          @relation(fields: [hostId], references: [id])
   hostId        String
-  reservations  Reservation[] // Relation to Reservation model
+  reservations  Reservation[]
 }
 
 model Reservation {
@@ -51,6 +51,19 @@ model Reservation {
   guestId     String
   caravan     Caravan           @relation(fields: [caravanId], references: [id])
   caravanId   String
+  payment     Payment?          // Relation to Payment model (one-to-one)
+}
+
+model Payment {
+  id            String        @id @default(cuid())
+  amount        Float
+  method        PaymentMethod
+  status        PaymentStatus @default(COMPLETED)
+  paymentDate   DateTime      @default(now())
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  reservation   Reservation   @relation(fields: [reservationId], references: [id])
+  reservationId String        @unique // Enforce one-to-one
 }
 
 enum Role {
@@ -62,4 +75,15 @@ enum ReservationStatus {
   PENDING
   CONFIRMED
   CANCELLED
+}
+
+enum PaymentMethod {
+  CARD
+  BANK_TRANSFER
+}
+
+enum PaymentStatus {
+  COMPLETED
+  FAILED
+  REFUNDED
 }

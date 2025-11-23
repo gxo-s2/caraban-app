@@ -3,6 +3,7 @@ import express from 'express';
 import userController from './user/user.controller'; // Import the user controller
 import caravanRoutes from './caravan/caravan.routes'; // Import caravan routes
 import reservationRoutes from './reservation/reservation.routes'; // Import reservation routes
+import paymentRoutes from './payment/payment.routes'; // Import payment routes
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -21,6 +22,9 @@ app.use('/api/caravans', caravanRoutes);
 
 // Mount reservation routes
 app.use('/api/reservations', reservationRoutes);
+
+// Mount payment routes
+app.use('/api/payments', paymentRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
