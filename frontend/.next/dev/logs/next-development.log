@@ -1943,3 +1943,5 @@ https://nextjs.org/docs/messages/module-not-found
 [01:04:40.953] Browser LOG     Attempting to log in with: {"email":"you@example.com","password":"12345678"}
 [01:04:41.097] Browser LOG     Login successful: {"contactNumber":null,"createdAt":"2025-11-23T18:21:40.385Z","email":"you@example.com","id":"cmic1obds0000dp9wmctwy1gu","isVerified":false,"name":"John Doe","profilePicture":null,"role":"HOST","updatedAt":"2025-11-23T18:21:40.385Z"}
 [01:05:17.093] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:10:09.072] Browser LOG     Attempting to log in with: {"email":"you@example.com","password":"12345678"}
+[01:10:09.072] Browser LOG     Login successful: {"contactNumber":null,"createdAt":"2025-11-23T18:21:40.385Z","email":"you@example.com","id":"cmic1obds0000dp9wmctwy1gu","isVerified":false,"name":"John Doe","profilePicture":null,"role":"HOST","updatedAt":"2025-11-23T18:21:40.385Z"}
