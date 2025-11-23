@@ -3,5 +3,6 @@
   "/auth/login/page": "app/auth/login/page.js",
   "/auth/signup/page": "app/auth/signup/page.js",
   "/caravans/page": "app/caravans/page.js",
+  "/host/caravans/new/page": "app/host/caravans/new/page.js",
   "/page": "app/page.js"
 }

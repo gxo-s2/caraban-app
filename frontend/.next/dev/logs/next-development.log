@@ -1917,3 +1917,29 @@ https://nextjs.org/docs/messages/module-not-found
 [00:28:07.282] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [00:28:52.625] Browser LOG     Attempting to log in with: {"email":"skaf@gmail.com","password":"12345678"}
 [00:29:00.391] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:36:56.254] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:36:58.840] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:37:05.415] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:37:06.364] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:34.078] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:48.875] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:42:22.647] Browser LOG     Attempting to sign up with: {"email":"sno@naver.com","name":"snoo","password":"12345","role":"HOST"}
+[00:42:24.601] Browser LOG     Attempting to sign up with: {"email":"sno@naver.com","name":"snoo","password":"12345","role":"HOST"}
+[00:42:31.297] Browser LOG     Attempting to sign up with: {"email":"sno@naver.com","name":"snoo","password":"12345","role":"HOST"}
+[00:42:38.574] Browser LOG     Attempting to sign up with: {"email":"sno@naver.com","name":"남교명","password":"12345","role":"HOST"}
+[00:43:13.537] Browser LOG     Attempting to sign up with: {"email":"you@example.com","name":"John Doe","password":"1234567","role":"GUEST"}
+[00:43:15.667] Browser LOG     Attempting to sign up with: {"email":"you@example.com","name":"John Doe","password":"1234567","role":"GUEST"}
+[00:43:16.867] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:43:30.742] Browser LOG     Attempting to log in with: {"email":"you@example.com","password":"12345"}
+[00:45:37.140] Browser LOG     Attempting to sign up with: {"email":"you@example.com","name":"John Doe","password":"12345678","role":"HOST"}
+[00:45:38.260] Browser LOG     Attempting to sign up with: {"email":"you@example.com","name":"John Doe","password":"12345678","role":"HOST"}
+[00:45:38.445] Browser LOG     Attempting to sign up with: {"email":"you@example.com","name":"John Doe","password":"12345678","role":"HOST"}
+[00:53:59.789] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:16.014] Browser LOG     Attempting to sign up with: {"email":"you@example.com","name":"John Doe","password":"12345678","role":"HOST"}
+[00:56:14.839] Browser LOG     Attempting to sign up with: {"email":"you@example.com","name":"John Doe","password":"12345678","role":"HOST"}
+[00:56:37.279] Browser LOG     Attempting to log in with: {"email":"you@example.com","password":"12345678"}
+[00:57:12.621] Browser LOG     Attempting to log in with: {"email":"you@example.com","password":"12345678"}
+[01:04:33.168] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:04:40.953] Browser LOG     Attempting to log in with: {"email":"you@example.com","password":"12345678"}
+[01:04:41.097] Browser LOG     Login successful: {"contactNumber":null,"createdAt":"2025-11-23T18:21:40.385Z","email":"you@example.com","id":"cmic1obds0000dp9wmctwy1gu","isVerified":false,"name":"John Doe","profilePicture":null,"role":"HOST","updatedAt":"2025-11-23T18:21:40.385Z"}
+[01:05:17.093] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

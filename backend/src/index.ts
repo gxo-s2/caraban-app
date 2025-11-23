@@ -1,5 +1,6 @@
 import 'dotenv/config'; // Load environment variables first
 import express from 'express';
+import cors from 'cors';
 import userController from './user/user.controller'; // Import the user controller
 import caravanRoutes from './caravan/caravan.routes'; // Import caravan routes
 import reservationRoutes from './reservation/reservation.routes'; // Import reservation routes
@@ -9,6 +10,7 @@ import reviewRoutes from './review/review.routes'; // Import review routes
 const app = express();
 const port = process.env.PORT || 3001;
 
+app.use(cors()); // Enable CORS
 app.use(express.json()); // Enable JSON body parsing
 
 app.get('/', (req, res) => {
