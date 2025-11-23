@@ -27,6 +27,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
+// 타입 경로가 맞는지 확인해주세요. (만약 파일이 없다면 아래 주석을 풀고 로컬에 정의하세요)
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$types$2f$backend$2d$enums$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/types/backend-enums.ts [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
@@ -40,7 +41,8 @@ function SignupPage() {
     const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [name, setName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
-    const [role, setRole] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$types$2f$backend$2d$enums$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Role"].GUEST); // Default to GUEST
+    // 초기값을 명확하게 Role.GUEST로 설정
+    const [role, setRole] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$types$2f$backend$2d$enums$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Role"].GUEST);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -49,13 +51,16 @@ function SignupPage() {
         setLoading(true);
         setError('');
         try {
-            console.log('Attempting to sign up with:', {
+            console.log('회원가입 요청 데이터:', {
                 email,
                 password,
                 name,
                 role
             });
-            const res = await fetch('http://localhost:3001/api/users/register', {
+            // [수정 포인트 1] 백엔드 API 주소 확인
+            // 기존: /api/users/register -> 변경: /api/auth/signup (일반적인 관례)
+            // *주의: 만약 백엔드 라우터가 /users/register라면 다시 원래대로 돌리세요.
+            const res = await fetch('http://localhost:3001/api/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -67,14 +72,15 @@ function SignupPage() {
                     role
                 })
             });
+            const data = await res.json();
             if (!res.ok) {
-                const errorData = await res.json();
-                throw new Error(errorData.message || 'Sign up failed.');
+                throw new Error(data.message || '회원가입에 실패했습니다.');
             }
-            alert('Sign up successful!');
-            router.push('/auth/login'); // Redirect to the new login page path
+            alert('회원가입이 완료되었습니다! 로그인 해주세요.');
+            router.push('/auth/login');
         } catch (err) {
-            setError(err.message || 'An unexpected error occurred during sign up.');
+            console.error(err);
+            setError(err.message || '알 수 없는 오류가 발생했습니다.');
         } finally{
             setLoading(false);
         }
@@ -89,7 +95,7 @@ function SignupPage() {
                     children: "Create Your Account"
                 }, void 0, false, {
                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                    lineNumber: 50,
+                    lineNumber: 63,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -104,7 +110,7 @@ function SignupPage() {
                                     children: "Email Address"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                    lineNumber: 53,
+                                    lineNumber: 68,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -117,13 +123,13 @@ function SignupPage() {
                                     required: true
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                    lineNumber: 56,
+                                    lineNumber: 71,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/auth/signup/page.tsx",
-                            lineNumber: 52,
+                            lineNumber: 67,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -134,7 +140,7 @@ function SignupPage() {
                                     children: "Password"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                    lineNumber: 67,
+                                    lineNumber: 84,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -147,13 +153,13 @@ function SignupPage() {
                                     required: true
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                    lineNumber: 70,
+                                    lineNumber: 87,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/auth/signup/page.tsx",
-                            lineNumber: 66,
+                            lineNumber: 83,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -164,7 +170,7 @@ function SignupPage() {
                                     children: "Full Name"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                    lineNumber: 81,
+                                    lineNumber: 100,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -177,13 +183,13 @@ function SignupPage() {
                                     required: true
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                    lineNumber: 84,
+                                    lineNumber: 103,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/auth/signup/page.tsx",
-                            lineNumber: 80,
+                            lineNumber: 99,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -193,25 +199,24 @@ function SignupPage() {
                                     children: "Register as:"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                    lineNumber: 95,
+                                    lineNumber: 116,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "mt-2 flex space-x-4",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "flex items-center",
+                                            className: "flex items-center cursor-pointer",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                     type: "radio",
                                                     name: "role",
-                                                    value: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$types$2f$backend$2d$enums$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Role"].GUEST,
                                                     checked: role === __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$types$2f$backend$2d$enums$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Role"].GUEST,
-                                                    onChange: (e)=>setRole(e.target.value),
+                                                    onChange: ()=>setRole(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$types$2f$backend$2d$enums$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Role"].GUEST),
                                                     className: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                                    lineNumber: 98,
+                                                    lineNumber: 121,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -219,28 +224,27 @@ function SignupPage() {
                                                     children: "Guest"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                                    lineNumber: 106,
+                                                    lineNumber: 128,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/auth/signup/page.tsx",
-                                            lineNumber: 97,
+                                            lineNumber: 120,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "flex items-center",
+                                            className: "flex items-center cursor-pointer",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                     type: "radio",
                                                     name: "role",
-                                                    value: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$types$2f$backend$2d$enums$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Role"].HOST,
                                                     checked: role === __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$types$2f$backend$2d$enums$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Role"].HOST,
-                                                    onChange: (e)=>setRole(e.target.value),
+                                                    onChange: ()=>setRole(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$types$2f$backend$2d$enums$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Role"].HOST),
                                                     className: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                                    lineNumber: 109,
+                                                    lineNumber: 133,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -248,49 +252,49 @@ function SignupPage() {
                                                     children: "Host"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                                    lineNumber: 117,
+                                                    lineNumber: 140,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/auth/signup/page.tsx",
-                                            lineNumber: 108,
+                                            lineNumber: 132,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                                    lineNumber: 96,
+                                    lineNumber: 117,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/auth/signup/page.tsx",
-                            lineNumber: 94,
+                            lineNumber: 115,
                             columnNumber: 11
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-red-500 text-sm text-center",
+                            className: "text-red-500 text-sm text-center font-bold",
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/src/app/auth/signup/page.tsx",
-                            lineNumber: 121,
+                            lineNumber: 146,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             type: "submit",
-                            className: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50",
+                            className: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 transition",
                             disabled: loading,
                             children: loading ? 'Signing Up...' : 'Sign Up'
                         }, void 0, false, {
                             fileName: "[project]/src/app/auth/signup/page.tsx",
-                            lineNumber: 122,
+                            lineNumber: 148,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                    lineNumber: 51,
+                    lineNumber: 64,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -304,24 +308,24 @@ function SignupPage() {
                             children: "Login"
                         }, void 0, false, {
                             fileName: "[project]/src/app/auth/signup/page.tsx",
-                            lineNumber: 132,
+                            lineNumber: 159,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/auth/signup/page.tsx",
-                    lineNumber: 130,
+                    lineNumber: 157,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/auth/signup/page.tsx",
-            lineNumber: 49,
+            lineNumber: 62,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/auth/signup/page.tsx",
-        lineNumber: 48,
+        lineNumber: 61,
         columnNumber: 5
     }, this);
 }

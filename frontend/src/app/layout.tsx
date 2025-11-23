@@ -3,6 +3,7 @@
 
 import './globals.css'; // Assuming global styles are in this file
 import { Inter } from 'next/font/google';
+import "./globals.css";
 import Navbar from '../components/Navbar'; // 또는 import Navbar from '../../components/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });

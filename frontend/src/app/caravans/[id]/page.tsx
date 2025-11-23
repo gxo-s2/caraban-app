@@ -1,385 +1,229 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { ReservationStatus } from '@/types/backend-enums';
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import axios from "axios";
 
-// Define types for data fetched from backend
-type Caravan = {
-  id: string;
+// 데이터 타입 정의 (백엔드와 통일: pricePerDay)
+interface Caravan {
+  // ID 타입은 UUID 문자열이지만, 여기서는 편의상 Number로 가정 (실제 사용은 string)
+  id: string; // 실제 데이터 타입을 string으로 가정
   name: string;
   description: string;
   location: string;
-  pricePerDay: number;
-  capacity: number;
-  hostId: string;
-};
-
-type Review = {
-  id: string;
-  rating: number;
-  comment: string;
-  createdAt: string;
-  author: {
-    name: string;
-    profilePicture?: string;
-  };
-};
+  pricePerDay: number; // 🚨 [핵심 수정] pricePerDay로 타입 정의
+  images: string[];
+  hostId: string; // 호스트 ID도 string (UUID)으로 가정
+}
 
 export default function CaravanDetailPage() {
-  const { id } = useParams(); // Get caravan ID from dynamic route
+  const { id } = useParams(); // URL 파라미터 가져오기
   const router = useRouter();
 
+  // 상태 관리
   const [caravan, setCaravan] = useState<Caravan | null>(null);
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [loadingCaravan, setLoadingCaravan] = useState(true);
-  const [loadingReviews, setLoadingReviews] = useState(true);
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
+  
+  // 예약 관련 상태
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // States for Reservation
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [reservationError, setReservationError] = useState('');
-  const [submittingReservation, setSubmittingReservation] = useState(false);
-
-  // States for Review
-  const [reviewRating, setReviewRating] = useState(0);
-  const [reviewComment, setReviewComment] = useState('');
-  const [reviewError, setReviewError] = useState('');
-  const [submittingReview, setSubmittingReview] = useState(false);
-
-  // Get user info from localStorage (for demo purposes)
-  const userId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null;
-  const userRole = typeof window !== 'undefined' ? localStorage.getItem('userRole') : null;
-  const isLoggedIn = !!userId;
-
-  // Fetch Caravan Details
+  // 1. 카라반 상세 정보 불러오기
   useEffect(() => {
     if (!id) return;
-
-    async function fetchCaravan() {
+    
+    const fetchCaravan = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/caravans/${id}`);
-        if (!res.ok) {
-          throw new Error('Failed to fetch caravan details.');
-        }
-        const data = await res.json();
-        setCaravan(data);
-      } catch (err: any) {
-        setError(err.message);
+        const response = await axios.get(`http://localhost:3001/api/caravans/${id}`);
+        setCaravan(response.data);
+      } catch (error) {
+        console.error("카라반 정보 로딩 실패:", error);
+        alert("카라반 정보를 불러올 수 없습니다.");
       } finally {
-        setLoadingCaravan(false);
+        setLoading(false);
       }
-    }
-
-    async function fetchReviews() {
-      try {
-        const res = await fetch(`http://localhost:3001/api/reviews/caravan/${id}`);
-        if (!res.ok) {
-          throw new Error('Failed to fetch reviews.');
-        }
-        const data = await res.json();
-        setReviews(data);
-      } catch (err: any) {
-        setReviewError(err.message);
-      } finally {
-        setLoadingReviews(false);
-      }
-    }
+    };
 
     fetchCaravan();
-    fetchReviews();
   }, [id]);
 
-  // Handle Reservation Submission
-  const handleReservationSubmit = async (e: React.FormEvent) => {
+  // 2. 날짜 변경 시 총 가격 자동 계산
+  useEffect(() => {
+    if (startDate && endDate && caravan) {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      
+      // 날짜 차이 계산 (밀리초 단위 -> 일 단위 변환)
+      const diffTime = end.getTime() - start.getTime();
+      const diffDays = diffTime / (1000 * 3600 * 24);
+
+      if (diffDays > 0) {
+        // 🚨 [핵심 수정 1] pricePerNight -> pricePerDay로 변경
+        setTotalPrice(diffDays * caravan.pricePerDay);
+      } else {
+        setTotalPrice(0);
+      }
+    }
+  }, [startDate, endDate, caravan]);
+
+  // 3. 예약 요청 핸들러
+  const handleReservation = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmittingReservation(true);
-    setReservationError('');
 
-    if (!isLoggedIn) {
-      setReservationError('Please log in to make a reservation.');
-      setSubmittingReservation(false);
-      return;
-    }
-
+    // 유효성 검사
     if (!startDate || !endDate) {
-      setReservationError('Please select both start and end dates.');
-      setSubmittingReservation(false);
+      alert("체크인 및 체크아웃 날짜를 선택해주세요.");
+      return;
+    }
+    if (totalPrice <= 0) {
+      alert("올바른 날짜 범위를 선택해주세요.");
       return;
     }
 
-    if (new Date(startDate) >= new Date(endDate)) {
-      setReservationError('End date must be after start date.');
-      setSubmittingReservation(false);
+    // 로그인 확인 (localStorage)
+    const storedUser = localStorage.getItem("user");
+    if (!storedUser) {
+      alert("로그인이 필요한 서비스입니다.");
+      router.push("/auth/login");
       return;
     }
+    const user = JSON.parse(storedUser);
 
-    try {
-      const res = await fetch('http://localhost:3001/api/reservations', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          caravanId: id,
-          guestId: userId, // Assuming userId is available from localStorage
+    if (confirm(`총 ${totalPrice.toLocaleString()}원으로 예약을 요청하시겠습니까?`)) {
+      setIsSubmitting(true);
+      try {
+        // 예약 요청 API 호출
+        await axios.post("http://localhost:3001/api/reservations", {
+          caravanId: id, // ID는 이미 string (UUID)
+          guestId: user.id, // Host ID와 동일하게 string (UUID)
           startDate,
           endDate,
-        }),
-      });
+          totalPrice,
+        });
 
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Reservation failed.');
+        alert("예약이 요청되었습니다! 호스트 승인을 기다리세요.");
+        router.push("/my"); // 마이페이지로 이동
+
+      } catch (error: any) {
+        console.error("예약 실패:", error);
+        if (error.response && error.response.status === 409) {
+          alert("이미 예약된 날짜입니다. 다른 날짜를 선택해주세요.");
+        } else {
+          alert("예약 요청 중 오류가 발생했습니다.");
+        }
+      } finally {
+        setIsSubmitting(false);
       }
-
-      const newReservation = await res.json();
-      console.log('Reservation successful:', newReservation);
-      alert('Reservation submitted successfully! You can view your pending reservations.');
-      // Optionally redirect or show a success message
-      setStartDate('');
-      setEndDate('');
-      // In a real app, you might refresh user's reservations or prompt for payment
-    } catch (err: any) {
-      setReservationError(err.message || 'An unexpected error occurred during reservation.');
-    } finally {
-      setSubmittingReservation(false);
     }
   };
 
-  // Handle Review Submission
-  const handleReviewSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmittingReview(true);
-    setReviewError('');
-
-    if (!isLoggedIn) {
-      setReviewError('Please log in to submit a review.');
-      setSubmittingReview(false);
-      return;
-    }
-
-    if (!reviewRating || !reviewComment) {
-      setReviewError('Please provide both a rating and a comment.');
-      setSubmittingReview(false);
-      return;
-    }
-    
-    if (typeof reviewRating !== 'number' || reviewRating < 1 || reviewRating > 5) {
-      setReviewError('Rating must be a number between 1 and 5.');
-      setSubmittingReview(false);
-      return;
-    }
-
-    try {
-      const res = await fetch('http://localhost:3001/api/reviews', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          caravanId: id,
-          authorId: userId, // Assuming userId is available from localStorage
-          rating: parseInt(reviewRating.toString(), 10), // Ensure rating is an integer
-          comment: reviewComment,
-        }),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Review submission failed.');
-      }
-
-      const newReview = await res.json();
-      console.log('Review submitted successfully:', newReview);
-      alert('Review submitted successfully!');
-      // Refresh reviews list
-      setReviews((prevReviews) => [newReview, ...prevReviews]);
-      setReviewRating(0);
-      setReviewComment('');
-    } catch (err: any) {
-      setReviewError(err.message || 'An unexpected error occurred during review submission.');
-    } finally {
-      setSubmittingReview(false);
-    }
-  };
-
-  if (loadingCaravan) {
-    return (
-      <main className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-        <p className="text-xl text-gray-700">Loading caravan details...</p>
-      </main>
-    );
-  }
-
-  if (error) {
-    return (
-      <main className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-        <p className="text-xl text-red-600">Error: {error}</p>
-        <Link href="/caravans" className="mt-4 text-indigo-600 hover:underline">
-          Back to Caravans
-        </Link>
-      </main>
-    );
-  }
-
-  if (!caravan) {
-    return (
-      <main className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-        <p className="text-xl text-gray-700">Caravan not found.</p>
-        <Link href="/caravans" className="mt-4 text-indigo-600 hover:underline">
-          Back to Caravans
-        </Link>
-      </main>
-    );
-  }
+  if (loading) return <div className="text-center py-20">로딩 중...</div>;
+  if (!caravan) return <div className="text-center py-20">카라반을 찾을 수 없습니다.</div>;
 
   return (
-    <main className="bg-gray-100 min-h-screen p-8">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8">
-        <Link href="/caravans" className="text-indigo-600 hover:underline mb-4 block">
-          &larr; Back to all Caravans
-        </Link>
+    <div className="max-w-6xl mx-auto p-6">
+      {/* 화면 레이아웃: 데스크탑에서는 3컬럼 중 2칸은 정보, 1칸은 예약창 */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        {/* --- [왼쪽] 카라반 상세 정보 --- */}
+        <div className="md:col-span-2 space-y-6">
+          {/* 이미지 영역 (임시 플레이스홀더) */}
+          <div className="w-full h-80 bg-gray-200 rounded-xl flex items-center justify-center text-gray-500 text-lg">
+            {caravan.images && caravan.images.length > 0 
+              ? "이미지 슬라이더 들어갈 자리" 
+              : "이미지 없음"}
+          </div>
 
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">{caravan.name}</h1>
-        <p className="text-lg text-gray-600 mb-2">Location: {caravan.location}</p>
-        <p className="text-xl font-semibold text-indigo-600 mb-4">
-          ${caravan.pricePerDay}
-          <span className="text-base font-normal text-gray-500"> / day</span>
-        </p>
-        <p className="text-gray-700 mb-4">{caravan.description}</p>
-        <p className="text-gray-700 mb-6">Capacity: {caravan.capacity} people</p>
-
-        {/* Reservation Section */}
-        <section className="mb-8 p-6 bg-indigo-50 rounded-lg">
-          <h2 className="text-2xl font-bold text-indigo-800 mb-4">Book Your Adventure</h2>
-          {isLoggedIn ? (
-            <form onSubmit={handleReservationSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">
-                  Start Date
-                </label>
-                <input
-                  type="date"
-                  id="startDate"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">
-                  End Date
-                </label>
-                <input
-                  type="date"
-                  id="endDate"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                  required
-                />
-              </div>
-              {reservationError && <p className="text-red-500 text-sm md:col-span-2">{reservationError}</p>}
-              <div className="md:col-span-2">
-                <button
-                  type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-                  disabled={submittingReservation}
-                >
-                  {submittingReservation ? 'Booking...' : 'Book Now'}
-                </button>
-              </div>
-            </form>
-          ) : (
-            <p className="text-gray-700">
-              <Link href="/login" className="text-indigo-600 hover:underline">Log in</Link> to make a reservation.
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{caravan.name}</h1>
+            <p className="text-gray-500 flex items-center">
+              📍 {caravan.location}
             </p>
-          )}
-        </section>
+          </div>
 
-        {/* Reviews Section */}
-        <section className="mb-8 p-6 bg-gray-50 rounded-lg">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Reviews</h2>
-          {isLoggedIn ? (
-            <form onSubmit={handleReviewSubmit} className="space-y-4 mb-6">
-              <h3 className="text-xl font-semibold text-gray-700">Write a Review</h3>
-              <div>
-                <label htmlFor="reviewRating" className="block text-sm font-medium text-gray-700">
-                  Rating (1-5)
-                </label>
-                <input
-                  type="number"
-                  id="reviewRating"
-                  min="1"
-                  max="5"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={reviewRating}
-                  onChange={(e) => setReviewRating(parseInt(e.target.value))}
-                  required
-                />
+          <div className="border-t pt-6">
+            <h2 className="text-xl font-semibold mb-4">카라반 소개</h2>
+            <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+              {caravan.description}
+            </p>
+          </div>
+          
+          <div className="border-t pt-6">
+            <h2 className="text-xl font-semibold mb-4">호스트 정보</h2>
+            <p className="text-gray-600">호스트 ID: {caravan.hostId}</p>
+          </div>
+        </div>
+
+        {/* --- [오른쪽] 예약 위젯 (사이드바) --- */}
+        <div className="md:col-span-1">
+          <div className="sticky top-8 bg-white border border-gray-200 rounded-xl shadow-lg p-6">
+            <div className="flex justify-between items-end mb-6">
+              <span className="text-2xl font-bold text-gray-900">
+                {/* 🚨 [핵심 수정 2] pricePerNight -> pricePerDay로 변경 */}
+                ₩{caravan.pricePerDay.toLocaleString()}
+              </span>
+              <span className="text-gray-500 mb-1">/ 1박</span>
+            </div>
+
+            <form onSubmit={handleReservation} className="space-y-4">
+              <div className="border rounded-lg p-2">
+                <div className="border-b p-2">
+                  <label className="block text-xs font-bold text-gray-800 uppercase">체크인</label>
+                  <input 
+                    type="date" 
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    className="w-full outline-none text-gray-600 mt-1"
+                    required
+                  />
+                </div>
+                <div className="p-2">
+                  <label className="block text-xs font-bold text-gray-800 uppercase">체크아웃</label>
+                  <input 
+                    type="date" 
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    min={startDate} // 체크인 날짜 이후만 선택 가능
+                    className="w-full outline-none text-gray-600 mt-1"
+                    required
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="reviewComment" className="block text-sm font-medium text-gray-700">
-                  Comment
-                </label>
-                <textarea
-                  id="reviewComment"
-                  rows={3}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={reviewComment}
-                  onChange={(e) => setReviewComment(e.target.value)}
-                  required
-                ></textarea>
-              </div>
-              {reviewError && <p className="text-red-500 text-sm">{reviewError}</p>}
+
               <button
                 type="submit"
-                className="inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-                disabled={submittingReview}
+                disabled={isSubmitting}
+                className={`w-full py-3 rounded-lg text-white font-bold text-lg transition
+                  ${isSubmitting 
+                    ? "bg-gray-400 cursor-not-allowed" 
+                    : "bg-rose-600 hover:bg-rose-700"}`}
               >
-                {submittingReview ? 'Submitting...' : 'Submit Review'}
+                {isSubmitting ? "처리 중..." : "예약 요청하기"}
               </button>
             </form>
-          ) : (
-            <p className="text-gray-700 mb-6">
-              <Link href="/login" className="text-indigo-600 hover:underline">Log in</Link> to submit a review.
-            </p>
-          )}
 
-          {loadingReviews ? (
-            <p className="text-gray-600">Loading reviews...</p>
-          ) : reviews.length > 0 ? (
-            <div className="space-y-4">
-              {reviews.map((review) => (
-                <div key={review.id} className="bg-white p-4 rounded-lg shadow-sm">
-                  <div className="flex items-center mb-2">
-                    <div className="flex-shrink-0 mr-3">
-                      {/* Placeholder for profile picture */}
-                      <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 text-sm font-semibold">
-                        {review.author.name ? review.author.name.charAt(0) : 'U'}
-                      </div>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-800">{review.author.name || 'Anonymous'}</p>
-                      <p className="text-sm text-gray-500">Rating: {review.rating}/5</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-700">{review.comment}</p>
-                  <p className="text-xs text-gray-400 mt-2">
-                    {new Date(review.createdAt).toLocaleDateString()}
-                  </p>
+            {/* 가격 계산 결과 표시 */}
+            {totalPrice > 0 && (
+              <div className="mt-6 pt-4 border-t space-y-2">
+                <div className="flex justify-between text-gray-600">
+                  <span className="underline">
+                    {/* 🚨 [핵심 수정 3] pricePerNight -> pricePerDay로 변경 */}
+                    ₩{caravan.pricePerDay.toLocaleString()} x {(totalPrice / caravan.pricePerDay)}박
+                  </span>
+                  <span>₩{totalPrice.toLocaleString()}</span>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-gray-600">No reviews yet. Be the first to review!</p>
-          )}
-        </section>
+                <div className="flex justify-between font-bold text-lg text-gray-900 border-t pt-4 mt-2">
+                  <span>총 합계</span>
+                  <span>₩{totalPrice.toLocaleString()}</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        
       </div>
-    </main>
+    </div>
   );
 }

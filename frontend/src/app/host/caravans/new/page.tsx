@@ -1,163 +1,157 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
-export default function RegisterCaravanPage() {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [location, setLocation] = useState('');
-  const [pricePerDay, setPricePerDay] = useState('');
-  const [capacity, setCapacity] = useState('');
-  const [hostId, setHostId] = useState(''); // Test-purpose host ID input
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+export default function NewCaravanPage() {
   const router = useRouter();
+
+  // 입력 폼 상태 관리
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [pricePerNight, setPricePerNight] = useState("");
+  const [capacity, setCapacity] = useState("");
+  
+  // 로그인한 유저 정보 저장용
+  const [user, setUser] = useState<{ id: number; role: string } | null>(null);
+
+  // 1. 페이지 로드 시 로그인 정보 확인
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (!storedUser) {
+      alert("로그인이 필요합니다.");
+      router.push("/auth/login");
+      return;
+    }
+    const parsedUser = JSON.parse(storedUser);
+    
+    // 호스트 권한 체크
+    if (parsedUser.role !== "HOST") {
+      alert("호스트만 접근할 수 있습니다.");
+      router.push("/");
+      return;
+    }
+    
+    setUser(parsedUser);
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
 
-    if (!hostId) {
-      setError('Host ID is required for testing.');
-      setLoading(false);
+    // 유저 정보가 없거나 ID가 없으면 중단
+    if (!user || !user.id) {
+      alert("로그인 정보가 올바르지 않습니다. 다시 로그인해주세요.");
       return;
     }
 
     try {
-      const res = await fetch('http://localhost:3001/api/caravans', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          description,
-          location,
-          pricePerDay: parseFloat(pricePerDay),
-          capacity: parseInt(capacity, 10),
-          hostId,
-        }),
-      });
+      // 보낼 데이터 준비 (모든 숫자는 Number()로 확실하게 변환)
+      const payload = {
+        name,
+        description,
+        location,
+        pricePerDay: Number(pricePerNight), // 숫자 변환
+        capacity: Number(capacity),           // 숫자 변환
+        hostId: user.id,              // [중요] Host ID도 숫자로 변환
+        images: ["https://placehold.co/600x400"], 
+      };
 
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Caravan registration failed.');
+      console.log("서버로 전송하는 데이터:", payload); // 개발자 도구 콘솔에서 확인 가능
+
+      // API 호출
+      await axios.post("http://localhost:3001/api/caravans", payload);
+
+      alert("카라반이 성공적으로 등록되었습니다!");
+      router.push("/"); // 등록 후 메인으로 이동
+
+    } catch (error: any) {
+      console.error("등록 실패 상세 로그:", error);
+
+      // 백엔드가 보내준 구체적인 에러 메시지를 사용자에게 알림
+      if (error.response && error.response.data) {
+        // 객체를 문자열로 바꿔서 보여줌
+        alert(`등록 실패: ${JSON.stringify(error.response.data)}`);
+      } else {
+        alert("카라반 등록에 실패했습니다. (서버 응답 없음)");
       }
-
-      alert('등록 성공!'); // Show success alert
-      router.push('/'); // Redirect to main page
-    } catch (err: any) {
-      setError(err.message || 'An unexpected error occurred during registration.');
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">내 카라반 등록하기</h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Caravan Name */}
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              카라반 이름
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-          {/* Description */}
-          <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-              설명
-            </label>
-            <textarea
-              id="description"
-              rows={4}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            ></textarea>
-          </div>
-          {/* Location */}
-          <div>
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700">
-              위치
-            </label>
-            <input
-              type="text"
-              id="location"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              required
-            />
-          </div>
-          {/* Price per Day */}
-          <div>
-            <label htmlFor="pricePerDay" className="block text-sm font-medium text-gray-700">
-              1박 가격
-            </label>
-            <input
-              type="number"
-              id="pricePerDay"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              value={pricePerDay}
-              onChange={(e) => setPricePerDay(e.target.value)}
-              required
-              min="0"
-            />
-          </div>
-          {/* Capacity */}
-          <div>
-            <label htmlFor="capacity" className="block text-sm font-medium text-gray-700">
-              수용 인원
-            </label>
-            <input
-              type="number"
-              id="capacity"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              value={capacity}
-              onChange={(e) => setCapacity(e.target.value)}
-              required
-              min="1"
-            />
-          </div>
-          {/* Host ID (for testing) */}
-          <div>
-            <label htmlFor="hostId" className="block text-sm font-medium text-gray-700">
-              Host ID (테스트용)
-            </label>
-            <input
-              type="text"
-              id="hostId"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Enter your Host ID"
-              value={hostId}
-              onChange={(e) => setHostId(e.target.value)}
-              required
-            />
-          </div>
-          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-          <button
-            type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-            disabled={loading}
-          >
-            {loading ? '등록 중...' : '등록하기'}
-          </button>
-        </form>
-      </div>
-    </main>
+    <div className="max-w-xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg border border-gray-200">
+      <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
+        내 카라반 등록하기
+      </h1>
+      
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-1">카라반 이름</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+            placeholder="예: 숲속 힐링 캠핑카"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-1">설명</label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full border p-2 rounded h-24 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+            placeholder="카라반의 특징을 설명해주세요."
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-1">위치</label>
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+            placeholder="예: 강원도 춘천"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-1">1박 가격 (원)</label>
+          <input
+            type="number"
+            value={pricePerNight}
+            onChange={(e) => setPricePerNight(e.target.value)}
+            className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+            placeholder="예: 150000"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-1">수용 인원</label>
+          <input
+            type="number"
+            value={capacity}
+            onChange={(e) => setCapacity(e.target.value)}
+            className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+            placeholder="예: 4"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition"
+        >
+          등록하기
+        </button>
+      </form>
+    </div>
   );
 }
