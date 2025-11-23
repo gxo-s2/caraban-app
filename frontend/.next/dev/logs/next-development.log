@@ -1,0 +1,1919 @@
+[00:00:00.574] Server  LOG     
+[00:00:00.574] Server  LOG        We detected TypeScript in your project and created a tsconfig.json file for you.
+[00:00:00.707] Server  LOG      ✓ Ready in 502ms
+[00:00:06.148] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:21.664] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:37.977] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:16.771] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.772] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.774] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.775] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.778] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.779] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.782] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.783] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.785] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.785] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.788] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.788] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.789] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:16.790] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:17.881] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:26.869] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:27.763] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:27.787] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:27.808] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:27.826] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:27.844] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:27.864] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:27.878] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:27.878] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:27.878] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:27.878] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:27.883] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:27.911] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:28.081] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:28.888] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:28.888] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:28.888] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:28.888] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:39.194] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:39.243] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:39.277] Server  LOG      ✓ Compiled in 100ms
+[00:08:39.341] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:08:39.888] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:39.888] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:39.888] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:39.888] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:08:56.877] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:10.189] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:09:10.197] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:09:10.253] Server  LOG      ✓ Compiled in 57ms
+[00:09:10.256] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:09:10.363] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:09:10.880] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:10.880] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:10.880] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:10.880] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:30.504] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:09:30.522] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:09:30.569] Server  LOG      ✓ Compiled in 52ms
+[00:09:30.585] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:09:30.710] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:09:30.887] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:30.887] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:30.887] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:53.275] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:09:53.381] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:09:53.571] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:53.571] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:09:53.571] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:09.216] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:09.348] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:09.540] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:09.540] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:09.540] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:10.683] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:10.774] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:10.922] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:10.923] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:10.923] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:11.096] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:11.277] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:11.282] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:11.423] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:11.448] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:11.461] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:11.461] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:11.537] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:11.633] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:11.633] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:11.633] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:11.641] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:11.733] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:11.837] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:11.837] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:11.837] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:11.849] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:11.941] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:12.003] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:12.005] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:12.005] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:12.005] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:12.092] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:12.177] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:12.177] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:12.177] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:12.187] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:12.271] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:12.325] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:12.325] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:12.332] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:12.428] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:12.573] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:12.573] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:12.573] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:19.124] Server  ERROR    ⨯ ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:19.290] Browser ERROR   uncaughtError: Error: ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:14:19.485] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:19.485] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:14:19.485] Browser ERROR   ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/components/Navbar'
+  4 | import './globals.css'; // Assuming global styles are in this file
+  5 | import { Inter } from 'next/font/google';
+> 6 | import Navbar from '@/components/Navbar'; // Import the Navbar component
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | const inter = Inter({ subsets: ['latin'] });
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+[00:15:57.106] Server  LOG      ✓ Compiled in 59ms
+[00:15:57.498] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:09.302] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:10.477] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:11.384] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:12.201] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:12.771] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:13.710] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:14.340] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:14.927] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:15.412] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:16.111] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:17:36.422] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:17:38.672] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:17:39.525] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:21:59.809] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:22:01.517] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:22:03.393] Server  ERROR    ⨯ ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:22:03.436] Server  ERROR    ⨯ ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:22:03.562] Browser ERROR   uncaughtError: Error: ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:22:03.749] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:22:03.749] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:22:05.903] Browser ERROR   uncaughtError: Error: ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:22:06.054] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:22:06.054] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:22:15.738] Browser ERROR   uncaughtError: Error: ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:22:15.941] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:22:15.942] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:26:17.658] Browser ERROR   uncaughtError: Error: ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:26:17.851] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:26:17.851] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:26:18.862] Browser ERROR   uncaughtError: Error: ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:26:19.008] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:26:19.008] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:26:25.641] Browser ERROR   uncaughtError: Error: ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:26:25.831] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:26:25.831] Browser ERROR   ./src/app/auth/signup/page.tsx:6:1
+Module not found: Can't resolve '@/types/backend-enums'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import { Role } from '@/types/backend-enums';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function SignupPage() {
+  9 |   const [email, setEmail] = useState('');
+
+Import traces:
+  Client Component Browser:
+    ./src/app/auth/signup/page.tsx [Client Component Browser]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/auth/signup/page.tsx [Client Component SSR]
+    ./src/app/auth/signup/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:28:07.052] Server  LOG      ✓ Compiled in 53ms
+[00:28:07.282] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:28:52.625] Browser LOG     Attempting to log in with: {"email":"skaf@gmail.com","password":"12345678"}
+[00:29:00.391] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
