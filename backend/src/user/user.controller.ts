@@ -1,13 +1,14 @@
 import { Request, Response, Router } from 'express';
 import { UserService } from './user.service';
-import { Role } from '@prisma/client';
+import { Role, User } from '@prisma/client';
 import bcrypt from 'bcryptjs'; // 비밀번호 비교용 라이브러리
 
 const router = Router();
 const userService = new UserService();
 
-// 1. 회원가입 (기존 코드)
-router.post('/register', async (req: Request, res: Response) => {
+// 1. 회원가입 (경로 수정 완료)
+// 🚨 [수정 완료] '/register' -> '/signup'으로 변경 (프론트엔드와 경로 통일)
+router.post('/signup', async (req: Request, res: Response) => {
   try {
     const { email, password, name, contactNumber, profilePicture, role } = req.body;
 
@@ -39,7 +40,7 @@ router.post('/register', async (req: Request, res: Response) => {
     const newUser = await userService.createUser(userData);
     
     // 비밀번호는 응답에서 제외
-    const { password: _, ...userWithoutPassword } = newUser;
+    const { password: _, ...userWithoutPassword } = newUser as User;
     res.status(201).json(userWithoutPassword);
 
   } catch (error: any) {
@@ -47,7 +48,7 @@ router.post('/register', async (req: Request, res: Response) => {
   }
 });
 
-// 2. 로그인 (✨ 새로 추가된 코드 ✨)
+// 2. 로그인
 router.post('/login', async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
@@ -62,13 +63,13 @@ router.post('/login', async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // 비밀번호 비교 (해시된 비밀번호와 입력받은 비밀번호 비교)
+    // 비밀번호 비교
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // 로그인 성공! (비밀번호 제외하고 유저 정보 반환)
+    // 로그인 성공!
     const { password: _, ...userWithoutPassword } = user;
     res.status(200).json(userWithoutPassword);
 

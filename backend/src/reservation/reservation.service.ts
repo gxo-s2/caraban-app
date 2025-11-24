@@ -75,4 +75,65 @@ export class ReservationService {
       },
     });
   }
+
+  /**
+   * Get all reservations for a specific host's caravans.
+   * @param hostId The ID of the host.
+   */
+  async getReservationsForHost(hostId: string): Promise<Reservation[]> {
+    return prisma.reservation.findMany({
+      where: {
+        caravan: {
+          hostId: hostId,
+        },
+      },
+      include: {
+        guest: { // Include guest details
+          select: { name: true, email: true }
+        },
+        caravan: { // Include caravan name
+          select: { name: true }
+        }
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  }
+
+  /**
+   * Update the status of a reservation.
+   * @param reservationId The ID of the reservation.
+   * @param status The new status.
+   * @param hostId The ID of the host making the request, for authorization.
+   */
+  async updateReservationStatus(reservationId: string, status: ReservationStatus, hostId: string): Promise<Reservation> {
+    // First, find the reservation and include the caravan's hostId for verification
+    const reservation = await prisma.reservation.findUnique({
+      where: { id: reservationId },
+      include: {
+        caravan: {
+          select: { hostId: true },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new Error('Reservation not found.');
+    }
+
+    // Security Check: Verify the person updating the status is the caravan's host
+    if (reservation.caravan.hostId !== hostId) {
+      throw new Error('Unauthorized: You are not the host of this caravan.');
+    }
+
+    return prisma.reservation.update({
+      where: {
+        id: reservationId,
+      },
+      data: {
+        status: status,
+      },
+    });
+  }
 }
