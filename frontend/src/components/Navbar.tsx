@@ -1,4 +1,4 @@
-'use client'; // This component uses client-side interactivity (e.g., localStorage, useState, useRouter)
+'use client'; 
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -77,6 +77,14 @@ export default function Navbar() {
 
               {isLoggedIn ? (
                 <>
+                  {/* 🚀 [새로 추가된 부분] '내 프로필' 링크 추가 */}
+                  <Link 
+                    href="/my/profile" 
+                    className="text-indigo-600 hover:bg-gray-100 hover:text-indigo-700 px-3 py-2 rounded-md text-sm font-bold"
+                  >
+                    내 프로필
+                  </Link>
+
                   {/* 🚨 [핵심 기능] HOST 전용 버튼 */}
                   {userRole === 'HOST' && (
                     <>
@@ -102,7 +110,7 @@ export default function Navbar() {
                   <Link href="/auth/login" className="text-gray-500 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                     로그인
                   </Link>
-                  <Link href="/auth/signup" className="text-gray-500 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                  <Link href="/auth/signup" className="text-gray-500 hover:bg-gray-100 hover:hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                     회원가입
                   </Link>
                 </>
