@@ -6,5 +6,6 @@
   "/caravans/page": "app/caravans/page.js",
   "/host/caravans/new/page": "app/host/caravans/new/page.js",
   "/host/reservations/page": "app/host/reservations/page.js",
+  "/my/payments/page": "app/my/payments/page.js",
   "/page": "app/page.js"
 }
