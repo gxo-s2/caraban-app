@@ -1,89 +1,63 @@
 import { ReservationStatus } from '@prisma/client';
-import prisma from '../prisma';
+import prisma from '../prisma'; 
 
 /**
- * 예약 생성
+ * 예약 생성 + 결제 처리 (트랜잭션)
  */
 export const createReservation = async (data: any) => {
-  return await prisma.reservation.create({
-    data,
-  });
-};
+  const { caravanId, guestId, startDate, endDate } = data;
 
-/**
- * [핵심] 특정 유저(게스트)의 예약 목록 조회 (Caravan 정보 포함)
- * - 실제 DB에서 데이터를 가져옵니다.
- */
-export const getReservationsByUserId = async (userId: string) => {
-  console.log(`[Service] DB에서 예약 조회 시도 - UserID: ${userId}`);
+  // 1. 카라반 조회
+  const caravan = await prisma.caravan.findUnique({ where: { id: caravanId } });
+  if (!caravan) throw new Error(`카라반을 찾을 수 없습니다. (ID: ${caravanId})`);
 
-  try {
-    const reservations = await prisma.reservation.findMany({
-      where: {
-        guestId: userId,
+  // 2. 날짜 계산
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const diffTime = end.getTime() - start.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+  if (diffDays <= 0) throw new Error('체크아웃 날짜 오류: 시작일보다 종료일이 빨라야 합니다.');
+
+  const calculatedPrice = diffDays * caravan.pricePerDay;
+
+  // 3. 트랜잭션 실행
+  return await prisma.$transaction(async (tx) => {
+    // 예약 생성
+    const newReservation = await tx.reservation.create({
+      data: {
+        startDate: start,
+        endDate: end,
+        totalPrice: calculatedPrice,
+        status: 'CONFIRMED',
+        guestId,
+        caravanId,
       },
-      include: {
-        caravan: true, // 프론트엔드 카드 UI에 필요한 카라반 정보 포함
-      },
-      // ⚠️ [안전 장치] 스키마에 createdAt 필드가 없을 경우 에러가 발생할 수 있어 잠시 주석 처리함
-      // 데이터가 잘 나오면 주석을 해제하세요.
-      // orderBy: { createdAt: 'desc' },
     });
 
-    return reservations;
-  } catch (error) {
-    console.error('🔴 [Service Error] DB 조회 실패:', error);
-    throw error;
-  }
-};
-
-/**
- * [호환성 유지용] getMyReservations
- */
-export const getMyReservations = async (userId: string) => {
-    return getReservationsByUserId(userId);
-};
-
-/**
- * 호스트를 위한 예약 조회 (내 카라반에 들어온 예약)
- */
-export const getReservationsForHost = async (hostId: string) => {
-  return await prisma.reservation.findMany({
-    where: {
-      caravan: {
-        hostId: hostId,
+    // 결제 생성 (이 부분에서 에러가 날 확률이 높음)
+    await tx.payment.create({
+      data: {
+        amount: calculatedPrice,
+        method: 'CARD', // 스키마와 일치하도록 단순화
+        status: 'COMPLETED',
+        reservationId: newReservation.id,
+        userId: guestId,
       },
-    },
-    include: {
-      guest: true,
-      caravan: true,
-    },
+    });
+
+    return newReservation;
   });
 };
 
-/**
- * 예약 상태 업데이트 (승인/거절/취소 등)
- */
-export const updateReservationStatus = async (id: string, status: string) => {
-  return await prisma.reservation.update({
-    where: { id },
-    data: {
-      // 문자열을 Prisma Enum 타입으로 변환
-      status: status as ReservationStatus,
-    },
+export const getReservationsByUserId = async (userId: string) => {
+  return await prisma.reservation.findMany({
+    where: { guestId: userId },
+    include: { caravan: true, payment: true },
+    orderBy: { createdAt: 'desc' },
   });
 };
 
-/**
- * 예약 ID로 단일 예약 조회 (비회원용)
- */
-export const lookupReservation = async (id: string) => {
-  const reservation = await prisma.reservation.findUnique({
-    where: { id },
-    include: {
-      caravan: true, // Caravan 정보 포함
-    },
-  });
-
-  return reservation;
-};
+export const getMyReservations = async (userId: string) => getReservationsByUserId(userId);
+export const getReservationsForHost = async (hostId: string) => prisma.reservation.findMany({ where: { caravan: { hostId } }, include: { guest: true, caravan: true } });
+export const updateReservationStatus = async (id: string, status: string) => prisma.reservation.update({ where: { id }, data: { status: status as ReservationStatus } });

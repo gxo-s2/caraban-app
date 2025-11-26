@@ -433,15 +433,28 @@ const ProfilePage = ()=>{
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
-                        }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            onClick: ()=>setIsEditing(true),
-                            className: "bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-150",
-                            children: "Edit Profile"
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/my/profile/page.tsx",
-                            lineNumber: 208,
-                            columnNumber: 13
-                        }, ("TURBOPACK compile-time value", void 0))
+                        }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setIsEditing(true),
+                                    className: "bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-150",
+                                    children: "Edit Profile"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/my/profile/page.tsx",
+                                    lineNumber: 209,
+                                    columnNumber: 15
+                                }, ("TURBOPACK compile-time value", void 0)),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>window.location.href = '/my/payments',
+                                    className: "bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-150",
+                                    children: "결제 내역 보러가기"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/my/profile/page.tsx",
+                                    lineNumber: 215,
+                                    columnNumber: 15
+                                }, ("TURBOPACK compile-time value", void 0))
+                            ]
+                        }, void 0, true)
                     }, void 0, false, {
                         fileName: "[project]/src/app/my/profile/page.tsx",
                         lineNumber: 189,
@@ -468,7 +481,7 @@ const ProfileField = ({ label, isEditing, children, value })=>/*#__PURE__*/ (0, 
                 children: label
             }, void 0, false, {
                 fileName: "[project]/src/app/my/profile/page.tsx",
-                lineNumber: 224,
+                lineNumber: 232,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0)),
             isEditing ? children : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -476,13 +489,13 @@ const ProfileField = ({ label, isEditing, children, value })=>/*#__PURE__*/ (0, 
                 children: value
             }, void 0, false, {
                 fileName: "[project]/src/app/my/profile/page.tsx",
-                lineNumber: 226,
+                lineNumber: 234,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/my/profile/page.tsx",
-        lineNumber: 223,
+        lineNumber: 231,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 const __TURBOPACK__default__export__ = ProfilePage;

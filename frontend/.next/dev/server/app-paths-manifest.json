@@ -1,6 +1,10 @@
 {
   "/auth/login/page": "app/auth/login/page.js",
+  "/caravans/[id]/page": "app/caravans/[id]/page.js",
+  "/caravans/new/page": "app/caravans/new/page.js",
+  "/caravans/page": "app/caravans/page.js",
+  "/my/payments/page": "app/my/payments/page.js",
+  "/my/profile/page": "app/my/profile/page.js",
   "/my/reservations/page": "app/my/reservations/page.js",
-  "/page": "app/page.js",
-  "/reservations/lookup/page": "app/reservations/lookup/page.js"
+  "/page": "app/page.js"
 }

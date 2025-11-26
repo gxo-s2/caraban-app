@@ -2,31 +2,44 @@
 
 import { useEffect, useState } from 'react';
 
+// 유저 타입 정의
 type User = {
   id: string;
   name?: string;
-  role?: string;
+  role?: string; // 'GUEST' | 'HOST'
 };
 
 export default function Navbar() {
+  const [user, setUser] = useState<User | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const userData = localStorage.getItem('user');
-    setIsLoggedIn(!!userData);
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser);
+      setIsLoggedIn(!!parsedUser);
+    }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
+    setUser(null);
     setIsLoggedIn(false);
-    window.location.href = '/';
+    // 오류 방지를 위해 절대 경로 사용
+    if (typeof window !== 'undefined') {
+      window.location.href = `${window.location.origin}/`;
+    }
   };
 
   const handleReservationLookupClick = () => {
-    if (isLoggedIn) {
-      window.location.href = '/my/reservations';
-    } else {
-      window.location.href = '/reservations/lookup';
+    if (typeof window !== 'undefined') {
+      const origin = window.location.origin;
+      if (isLoggedIn) {
+        window.location.href = `${origin}/my/reservations`;
+      } else {
+        window.location.href = `${origin}/reservations/lookup`;
+      }
     }
   };
 
@@ -35,6 +48,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           
+          {/* 왼쪽: 로고 및 메인 메뉴 */}
           <div className="flex items-center gap-8">
             <a href="/" className="flex-shrink-0 flex items-center cursor-pointer">
               <span className="text-2xl font-extrabold text-indigo-600 tracking-tight">
@@ -56,12 +70,32 @@ export default function Navbar() {
               >
                 예약 조회
               </button>
+
+              {/* ✅ [핵심 추가] 호스트 전용 메뉴: 카라반 등록 */}
+              {/* 유저 역할이 'HOST'일 때만 이 버튼이 보입니다. */}
+              {user?.role === 'HOST' && (
+                <a
+                  href="/caravans/new"
+                  className="text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-indigo-800 text-sm font-bold transition-colors"
+                >
+                  카라반 등록
+                </a>
+              )}
             </div>
           </div>
 
+          {/* 오른쪽: 유저 메뉴 */}
           <div className="flex items-center space-x-4">
             {isLoggedIn ? (
               <>
+                {/* ✅ [추가] 결제 내역 링크 */}
+                <a
+                  href="/my/payments"
+                  className="hidden md:inline-flex items-center text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >
+                  결제 내역
+                </a>
+
                 <a
                   href="/my/reservations"
                   className="hidden md:inline-block text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
@@ -82,7 +116,6 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              // ✅ [수정됨] href 경로를 '/login' -> '/auth/login'으로 변경
               <a
                 href="/auth/login"
                 className="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-bold shadow-md hover:bg-indigo-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"

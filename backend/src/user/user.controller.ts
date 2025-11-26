@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
-import { UserService } from './user.service';
+// ✅ [수정] 클래스가 아닌 함수들을 직접 import 합니다.
+import * as userService from './user.service';
 import { Role } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
-const userService = new UserService();
+// ❌ [삭제] 클래스 인스턴스 생성 코드 제거
+// const userService = new UserService();
 
 export const signUp = async (req: Request, res: Response) => {
   try {
@@ -17,6 +19,7 @@ export const signUp = async (req: Request, res: Response) => {
       return res.status(400).json({ message: `Invalid role: ${role}. Must be one of ${Object.values(Role).join(', ')}.` });
     }
 
+    // ✅ [수정] 함수 직접 호출
     const existingUser = await userService.findUserByEmail(email);
     if (existingUser) {
       return res.status(409).json({ message: 'User with this email already exists.' });
@@ -32,6 +35,7 @@ export const signUp = async (req: Request, res: Response) => {
       isVerified: false 
     };
 
+    // ✅ [수정] 함수 직접 호출
     const newUser = await userService.createUser(userData);
     res.status(201).json(newUser);
 
@@ -48,6 +52,7 @@ export const logIn = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Email and password are required.' });
     }
 
+    // ✅ [수정] 함수 직접 호출
     const user = await userService.findUserByEmail(email);
     if (!user) {
       return res.status(401).json({ message: 'Invalid email or password' });
@@ -74,6 +79,7 @@ export const logIn = async (req: Request, res: Response) => {
 export const getUser = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
+        // ✅ [수정] 함수 직접 호출 (별칭 사용)
         const user = await userService.getUserProfile(id);
 
         if (!user) {
@@ -101,6 +107,7 @@ export const updateUser = async (req: Request, res: Response) => {
             return res.status(400).json({ message: 'Update data is required (name or contactNumber).' });
         }
 
+        // ✅ [수정] 함수 직접 호출 (별칭 사용)
         const updatedUser = await userService.updateUserProfile(id, { name, contactNumber });
         res.status(200).json(updatedUser);
 

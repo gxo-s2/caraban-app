@@ -1,107 +1,207 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-// Next.js 환경이 아닐 경우를 대비해 window.location을 사용하는 방식으로 대체합니다.
-// 실제 Next.js 앱에서는 import { useRouter } from "next/navigation"; 을 사용하세요.
-// import Link from "next/link"; 
+import { useState } from 'react';
+import axios from 'axios';
+// import Link from 'next/link'; // a 태그 사용을 위해 주석 처리
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  
-  // const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
+  // 🔐 스마트 간편 로그인 핸들러
+  // ✅ [수정 1] role 타입을 백엔드와 일치시킵니다 ('USER' -> 'GUEST')
+  const handleLogin = async (role: 'GUEST' | 'HOST') => {
+    setLoading(true);
+    setError('');
+
+    // 테스트용 계정 정보
+    const credentials = {
+      // ✅ [수정 2] 조건문도 'GUEST'로 변경
+      email: role === 'GUEST' ? 'guest@test.com' : 'host@test.com',
+      password: 'password123',
+      name: role === 'GUEST' ? '테스트 게스트' : '테스트 호스트',
+      role: role, // 이제 'GUEST' 또는 'HOST'가 전송됩니다.
+    };
 
     try {
-      // 1. 로그인 요청
-      // ✅ [수정 완료] 
-      // 1) 백엔드 라우트가 '/api/users'로 변경되었으므로 'auth' -> 'users'로 변경
-      // 2) Next.js 프록시 설정을 활용하기 위해 'http://localhost:3001' 제거 (상대 경로 사용)
-      const res = await fetch("/api/users/login", { 
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      let user;
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "로그인에 실패했습니다.");
+      // 1. 회원가입 시도
+      try {
+        console.log('회원가입 시도...');
+        const signupRes = await axios.post('/api/users/signup', credentials);
+        user = signupRes.data;
+        console.log('회원가입 성공:', user);
+      } catch (err: any) {
+        // 2. 이미 존재하는 계정이라면 -> 로그인 시도
+        if (err.response && err.response.status === 409) {
+          console.log('이미 계정이 존재함. 로그인 시도...');
+          const loginRes = await axios.post('/api/users/login', {
+            email: credentials.email,
+            password: credentials.password,
+          });
+          user = loginRes.data;
+          console.log('로그인 성공:', user);
+        } else {
+          throw err;
+        }
       }
 
-      // 서버 응답에서 유저 정보를 추출하여 저장
-      const userInfo = data.user || data; 
-
-      if (!userInfo.id) {
-         // role은 필수 여부에 따라 체크하거나 생략 가능
-         console.warn("User ID missing in response:", userInfo);
-         // throw new Error("서버 응답에 유저 정보가 부족합니다."); // 필요 시 주석 해제
+      // 3. 유저 정보 저장 및 이동
+      if (user && user.id) {
+        localStorage.setItem('user', JSON.stringify(user));
+        window.location.href = '/';
+      } else {
+        throw new Error('유저 정보를 받아오지 못했습니다.');
       }
-
-      // 정보를 깔끔하게 저장
-      localStorage.setItem("user", JSON.stringify(userInfo));
-
-      alert(`로그인 성공! 환영합니다.`);
-      
-      // 페이지 이동
-      window.location.href = "/"; 
 
     } catch (err: any) {
-      console.error("Login Error:", err);
-      // HTML 응답(404 등)이 올 경우 JSON 파싱 에러가 발생하므로, 메시지를 다듬어 줍니다.
-      if (err.message && err.message.includes("Unexpected token")) {
-        setError("서버 연결 오류: 올바르지 않은 응답입니다. (백엔드 경로를 확인하세요)");
+      console.error('로그인 프로세스 실패:', err);
+      setError(err.response?.data?.message || '로그인 처리에 실패했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 이메일/비밀번호 로그인 핸들러 (직접 입력)
+  const handleManualLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await axios.post('/api/users/login', {
+        email,
+        password,
+      });
+
+      const user = res.data;
+      
+      if (user && user.id) {
+        localStorage.setItem('user', JSON.stringify(user));
+        window.location.href = '/';
       } else {
-        setError(err.message || "알 수 없는 오류가 발생했습니다.");
+        throw new Error('유저 정보를 받아오지 못했습니다.');
       }
+    } catch (err: any) {
+      console.error('로그인 실패:', err);
+      setError(err.response?.data?.message || '이메일 또는 비밀번호가 올바르지 않습니다.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Login</h2>
-        <form onSubmit={handleLogin} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
-            <input
-              type="password"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          {error && <p className="text-red-500 text-sm text-center font-bold">{error}</p>}
-
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition font-bold"
-          >
-            Log In
-          </button>
-        </form>
-        <p className="mt-4 text-center text-sm text-gray-600">
-          계정이 없으신가요?{" "}
-          <a href="/auth/signup" className="text-blue-600 font-bold hover:underline">
-            회원가입
-          </a>
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          CaravanShare 로그인
+        </h2>
+        <p className="mt-2 text-center text-sm text-gray-600">
+          개발 및 테스트를 위한 자동 로그인 페이지입니다.<br/>
+          (DB가 초기화되어도 자동으로 복구됩니다)
         </p>
+      </div>
+
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          
+          {error && (
+            <div className="mb-4 p-3 bg-red-50 text-red-500 text-sm rounded-md border border-red-200">
+              {error}
+            </div>
+          )}
+
+          <div className="space-y-6">
+            {/* 간편 로그인 버튼들 */}
+            <div>
+              <button
+                // ✅ [수정 3] 버튼 클릭 시 'GUEST'를 전달하도록 변경
+                onClick={() => handleLogin('GUEST')}
+                disabled={loading}
+                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${loading ? 'bg-indigo-400' : 'bg-indigo-600 hover:bg-indigo-700'} focus:outline-none transition-colors mb-3`}
+              >
+                {loading ? '처리 중...' : '게스트(여행자)로 간편 로그인'}
+              </button>
+              
+              <button
+                onClick={() => handleLogin('HOST')}
+                disabled={loading}
+                className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none transition-colors"
+              >
+                호스트(카라반 주인)로 간편 로그인
+              </button>
+              
+              <p className="mt-2 text-xs text-gray-500 text-center">
+                * 테스트용 자동 가입/로그인 버튼입니다.
+              </p>
+            </div>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500">또는 이메일 로그인</span>
+              </div>
+            </div>
+
+            {/* 이메일 로그인 폼 */}
+            <form onSubmit={handleManualLogin} className="space-y-4">
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">이메일</label>
+                <input
+                  id="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">비밀번호</label>
+                <input
+                  id="password"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              >
+                로그인
+              </button>
+            </form>
+
+            <div className="mt-6">
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white text-gray-500">계정이 없으신가요?</span>
+                </div>
+              </div>
+              <div className="mt-6 grid grid-cols-1 gap-3">
+                <a
+                  href="/register"
+                  className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                >
+                  회원가입 하기
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   );

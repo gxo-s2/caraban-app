@@ -4,8 +4,7 @@ import {
   createReservation, 
   getUserReservations, 
   getHostReservations, 
-  updateReservationStatus,
-  lookupReservation
+  updateReservationStatus 
 } from './reservation.controller';
 
 const router = Router();
@@ -17,22 +16,15 @@ router.use((req, res, next) => {
 });
 
 // ==========================================
-// Public Routes
-// ==========================================
-router.get('/lookup/:id', lookupReservation);
-
-
-// ==========================================
 // Guest Routes
 // ==========================================
 
 router.post('/', createReservation);
 
-// ✅ [핵심] 프론트엔드가 호출하는 경로 (/user/:userId)
-router.get('/user/:userId', (req, res, next) => {
-  console.log('🔎 [Router] GET /user/:userId 매칭됨. 컨트롤러로 이동합니다.');
-  getUserReservations(req, res).catch(next);
-});
+// ✅ [수정] Express 라우터 핸들러 등록 방식 수정
+// 기존: getUserReservations(req, res).catch(next) -> Express가 함수 자체를 원함
+// 수정: getUserReservations 함수 자체를 전달하거나, async 핸들러 래퍼 사용
+router.get('/user/:userId', getUserReservations);
 
 
 // ==========================================

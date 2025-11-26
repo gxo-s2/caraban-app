@@ -205,12 +205,20 @@ const ProfilePage = () => {
               </button>
             </>
           ) : (
-            <button
-              onClick={() => setIsEditing(true)}
-              className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-150"
-            >
-              Edit Profile
-            </button>
+            <>
+              <button
+                onClick={() => setIsEditing(true)}
+                className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-150"
+              >
+                Edit Profile
+              </button>
+              <button
+                onClick={() => window.location.href = '/my/payments'}
+                className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-150"
+              >
+                결제 내역 보러가기
+              </button>
+            </>
           )}
         </div>
       </div>
