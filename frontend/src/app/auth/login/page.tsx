@@ -88,11 +88,10 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          CaravanShare 로그인
+          CaravanApp 로그인
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          개발 및 테스트를 위한 자동 로그인 페이지입니다.<br/>
-          (DB가 초기화되어도 자동으로 복구됩니다)
+          간편 로그인
         </p>
       </div>
 
@@ -106,37 +105,7 @@ export default function LoginPage() {
           )}
 
           <div className="space-y-6">
-            {/* 간편 로그인 버튼들 */}
-            <div>
-              <button
-                onClick={() => handleLogin('GUEST')}
-                disabled={loading}
-                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${loading ? 'bg-indigo-400' : 'bg-indigo-600 hover:bg-indigo-700'} focus:outline-none transition-colors mb-3`}
-              >
-                {loading ? '처리 중...' : '게스트(여행자)로 간편 로그인'}
-              </button>
-              
-              <button
-                onClick={() => handleLogin('HOST')}
-                disabled={loading}
-                className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none transition-colors"
-              >
-                호스트(카라반 주인)로 간편 로그인
-              </button>
-              
-              <p className="mt-2 text-xs text-gray-500 text-center">
-                * 테스트용 자동 가입/로그인 버튼입니다.
-              </p>
-            </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">또는 이메일 로그인</span>
-              </div>
-            </div>
 
             {/* 이메일 로그인 폼 */}
             <form onSubmit={handleManualLogin} className="space-y-4">
