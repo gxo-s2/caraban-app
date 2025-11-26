@@ -402,3 +402,497 @@
 [03:41:13.112] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [04:32:45.479] Server  LOG      ✓ Compiled in 643ms
 [04:32:48.067] Server  LOG      ✓ Compiled in 102ms
+[04:45:43.105] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.108] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.137] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.187] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.189] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.190] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.225] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.225] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.239] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.240] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.242] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.243] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.246] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.247] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.263] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.264] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.267] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.267] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.276] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.277] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.279] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.279] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.287] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.288] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.981] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.982] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.984] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.984] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.985] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:43.985] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:44.007] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:44.008] Server  ERROR    ⨯ ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[04:45:44.039] Server  LOG      ✓ Compiled in 1254ms
+[04:45:45.108] Browser ERROR   ./src/app/layout.tsx:11:1
+Module not found: Can't resolve '@components/Navbar'
+   9 | import { Inter } from 'next/font/google';
+  10 | // import Navbar from '../components/Navbar'; // 현재 파일 구조에 따라 상대 경로를 확인해야 합니다.
+> 11 | import Navbar from '@components/Navbar'; // 만약 alias를 사용한다면 이렇게 표현됩니다.
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  12 |
+  13 | const inter = Inter({ subsets: ['latin'] });
+  14 |
+
+https://nextjs.org/docs/messages/module-not-found
+[04:47:21.160] Server  LOG      ✓ Compiled in 272ms
+[04:47:21.955] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
