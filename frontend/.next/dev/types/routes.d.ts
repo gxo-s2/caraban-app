@@ -3,7 +3,7 @@
 
 type AppRoutes = "/" | "/auth/login" | "/auth/register" | "/auth/signup" | "/caravans" | "/caravans/[id]" | "/caravans/new" | "/host/caravans/manage" | "/host/caravans/new" | "/host/reservations" | "/my/payments" | "/my/profile" | "/my/reservations" | "/reservations/lookup" | "/reservations/success"
 type PageRoutes = never
-type LayoutRoutes = "/"
+type LayoutRoutes = "/" | "/reservations"
 type RedirectRoutes = never
 type RewriteRoutes = "/api/[[...path]]"
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes
@@ -24,6 +24,7 @@ interface ParamMap {
   "/my/payments": {}
   "/my/profile": {}
   "/my/reservations": {}
+  "/reservations": {}
   "/reservations/lookup": {}
   "/reservations/success": {}
 }
@@ -33,6 +34,7 @@ export type ParamsOf<Route extends Routes> = ParamMap[Route]
 
 interface LayoutSlotMap {
   "/": never
+  "/reservations": never
 }
 
 

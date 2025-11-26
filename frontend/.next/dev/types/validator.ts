@@ -185,3 +185,12 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   // @ts-ignore
   type __Unused = __Check
 }
+
+// Validate ../../../src/app/reservations/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/reservations">> = Specific
+  const handler = {} as typeof import("../../../src/app/reservations/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
