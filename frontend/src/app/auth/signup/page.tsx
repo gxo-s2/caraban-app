@@ -6,10 +6,14 @@ import Link from 'next/link';
 // 타입 경로가 맞는지 확인해주세요. (만약 파일이 없다면 아래 주석을 풀고 로컬에 정의하세요)
 import { Role } from '../../../types/backend-enums'; 
 
+// Vercel 환경 변수에서 API 기본 경로를 가져옵니다. 
+// Vercel에서 NEXT_PUBLIC_API_BASE_URL을 '/api'로 설정했습니다.
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '/api';
+
 // 만약 위 import가 안 된다면 아래 주석을 풀어서 사용하세요.
 // enum Role {
-//   HOST = 'HOST',
-//   GUEST = 'GUEST',
+//   HOST = 'HOST',
+//   GUEST = 'GUEST',
 // }
 
 export default function SignupPage() {
@@ -30,10 +34,11 @@ export default function SignupPage() {
     try {
       console.log('회원가입 요청 데이터:', { email, password, name, role });
 
-      // [수정 포인트 1] 백엔드 API 주소 확인
-      // 기존: /api/users/register -> 변경: /api/auth/signup (일반적인 관례)
-      // *주의: 만약 백엔드 라우터가 /users/register라면 다시 원래대로 돌리세요.
-      const res = await fetch('http://localhost:3001/api/auth/signup', {
+      // ⭐ 수정된 부분: 하드코딩된 로컬 주소 대신 환경 변수를 사용합니다.
+      // Vercel에서는 '/api/users/signup' 경로를 사용합니다.
+      const url = `${API_BASE_URL}/users/signup`; 
+      
+      const res = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,14 +49,17 @@ export default function SignupPage() {
       const data = await res.json();
 
       if (!res.ok) {
+        // 서버에서 오는 에러 메시지를 사용자에게 표시합니다.
         throw new Error(data.message || '회원가입에 실패했습니다.');
       }
 
-      alert('회원가입이 완료되었습니다! 로그인 해주세요.');
+      // alert() 대신 Vercel 환경에서 안전한 대체 UI를 사용하는 것이 권장되지만, 
+      // 현재 로컬 개발 환경과의 일관성을 위해 일단 유지합니다.
+      alert('회원가입이 완료되었습니다! 로그인 해주세요.'); 
       router.push('/auth/login'); 
     } catch (err: any) {
       console.error(err);
-      setError(err.message || '알 수 없는 오류가 발생했습니다.');
+      setError(err.message || '알 수 없는 오류가 발생했습니다. (DB 연결 또는 서버 에러 확인 필요)');
     } finally {
       setLoading(false);
     }
@@ -63,6 +71,22 @@ export default function SignupPage() {
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Create Your Account</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           
+          {/* 이름 입력 */}
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              Full Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="John Doe"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+
           {/* 이메일 입력 */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -95,23 +119,7 @@ export default function SignupPage() {
             />
           </div>
 
-          {/* 이름 입력 */}
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="John Doe"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-
-          {/* [수정 포인트 2] 역할 선택 (라디오 버튼) */}
+          {/* 역할 선택 (라디오 버튼) */}
           <div>
             <label className="block text-sm font-medium text-gray-700">Register as:</label>
             <div className="mt-2 flex space-x-4">
@@ -150,7 +158,7 @@ export default function SignupPage() {
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 transition"
             disabled={loading}
           >
-            {loading ? 'Signing Up...' : 'Sign Up'}
+            {loading ? 'Signing Up...' : '회원가입 완료'}
           </button>
         </form>
 
