@@ -81,13 +81,13 @@ export default function Navbar() {
                 </button>
               )}
 
-              {/* 호스트 전용 메뉴: 카라반 등록 */}
+              {/* 호스트 전용 메뉴: 카라반 목록 */}
               {user?.role === 'HOST' && (
                 <a
-                  href="/caravans/new"
+                  href="/host/caravans/manage"
                   className="text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-indigo-800 text-sm font-bold transition-colors"
                 >
-                  카라반 등록
+                  카라반 목록
                 </a>
               )}
             </div>

@@ -93,9 +93,9 @@ function Navbar() {
                                         columnNumber: 17
                                     }, this),
                                     user?.role === 'HOST' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                        href: "/caravans/new",
+                                        href: "/host/caravans/manage",
                                         className: "text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-indigo-800 text-sm font-bold transition-colors",
-                                        children: "카라반 등록"
+                                        children: "카라반 목록"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Navbar.tsx",
                                         lineNumber: 86,
