@@ -1,4 +1,5 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/auth/login/page": "app/auth/login/page.js",
   "/caravans/[id]/page": "app/caravans/[id]/page.js",
   "/caravans/new/page": "app/caravans/new/page.js",

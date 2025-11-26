@@ -35,11 +35,11 @@ export const createReservation = async (data: any) => {
       },
     });
 
-    // 결제 생성 (이 부분에서 에러가 날 확률이 높음)
+    // 결제 생성
     await tx.payment.create({
       data: {
         amount: calculatedPrice,
-        method: 'CARD', // 스키마와 일치하도록 단순화
+        method: 'CARD',
         status: 'COMPLETED',
         reservationId: newReservation.id,
         userId: guestId,
@@ -50,6 +50,9 @@ export const createReservation = async (data: any) => {
   });
 };
 
+/**
+ * 내 예약 목록 조회
+ */
 export const getReservationsByUserId = async (userId: string) => {
   return await prisma.reservation.findMany({
     where: { guestId: userId },
@@ -58,6 +61,20 @@ export const getReservationsByUserId = async (userId: string) => {
   });
 };
 
+/**
+ * ✅ [복구됨] 예약 번호(ID)로 단건 조회 (비회원 조회용)
+ */
+export const getReservationById = async (reservationId: string) => {
+  return await prisma.reservation.findUnique({
+    where: { id: reservationId },
+    include: { 
+      caravan: true,
+      payment: true // 결제 정보도 같이 확인
+    },
+  });
+};
+
+// 기타 함수들
 export const getMyReservations = async (userId: string) => getReservationsByUserId(userId);
 export const getReservationsForHost = async (hostId: string) => prisma.reservation.findMany({ where: { caravan: { hostId } }, include: { guest: true, caravan: true } });
 export const updateReservationStatus = async (id: string, status: string) => prisma.reservation.update({ where: { id }, data: { status: status as ReservationStatus } });

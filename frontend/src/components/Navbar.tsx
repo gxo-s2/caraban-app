@@ -14,11 +14,17 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    // 클라이언트 사이드에서만 로컬 스토리지 접근
     const userData = localStorage.getItem('user');
     if (userData) {
-      const parsedUser = JSON.parse(userData);
-      setUser(parsedUser);
-      setIsLoggedIn(!!parsedUser);
+      try {
+        const parsedUser = JSON.parse(userData);
+        setUser(parsedUser);
+        setIsLoggedIn(!!parsedUser);
+      } catch (e) {
+        console.error("유저 정보 파싱 실패", e);
+        localStorage.removeItem('user');
+      }
     }
   }, []);
 
@@ -26,7 +32,6 @@ export default function Navbar() {
     localStorage.removeItem('user');
     setUser(null);
     setIsLoggedIn(false);
-    // 오류 방지를 위해 절대 경로 사용
     if (typeof window !== 'undefined') {
       window.location.href = `${window.location.origin}/`;
     }
@@ -35,6 +40,7 @@ export default function Navbar() {
   const handleReservationLookupClick = () => {
     if (typeof window !== 'undefined') {
       const origin = window.location.origin;
+      // 로그인 상태라면 내 예약 페이지로, 아니면 조회 페이지로
       if (isLoggedIn) {
         window.location.href = `${origin}/my/reservations`;
       } else {
@@ -64,15 +70,18 @@ export default function Navbar() {
                 Explore Caravans
               </a>
               
-              <button
-                onClick={handleReservationLookupClick}
-                className="text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-indigo-500 text-sm font-medium transition-colors focus:outline-none"
-              >
-                예약 조회
-              </button>
+              {/* ✅ [수정됨] 게스트(GUEST)가 아닐 때만 '예약 조회' 버튼 표시 */}
+              {/* 비회원(user가 null)이거나, 호스트(HOST)일 때만 보입니다. */}
+              {user?.role !== 'GUEST' && (
+                <button
+                  onClick={handleReservationLookupClick}
+                  className="text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-indigo-500 text-sm font-medium transition-colors focus:outline-none"
+                >
+                  예약 조회
+                </button>
+              )}
 
-              {/* ✅ [핵심 추가] 호스트 전용 메뉴: 카라반 등록 */}
-              {/* 유저 역할이 'HOST'일 때만 이 버튼이 보입니다. */}
+              {/* 호스트 전용 메뉴: 카라반 등록 */}
               {user?.role === 'HOST' && (
                 <a
                   href="/caravans/new"
@@ -88,7 +97,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             {isLoggedIn ? (
               <>
-                {/* ✅ [추가] 결제 내역 링크 */}
+                {/* 결제 내역 링크 */}
                 <a
                   href="/my/payments"
                   className="hidden md:inline-flex items-center text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"

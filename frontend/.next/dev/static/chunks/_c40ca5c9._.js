@@ -18,11 +18,17 @@ function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Navbar.useEffect": ()=>{
+            // 클라이언트 사이드에서만 로컬 스토리지 접근
             const userData = localStorage.getItem('user');
             if (userData) {
-                const parsedUser = JSON.parse(userData);
-                setUser(parsedUser);
-                setIsLoggedIn(!!parsedUser);
+                try {
+                    const parsedUser = JSON.parse(userData);
+                    setUser(parsedUser);
+                    setIsLoggedIn(!!parsedUser);
+                } catch (e) {
+                    console.error("유저 정보 파싱 실패", e);
+                    localStorage.removeItem('user');
+                }
             }
         }
     }["Navbar.useEffect"], []);
@@ -30,7 +36,6 @@ function Navbar() {
         localStorage.removeItem('user');
         setUser(null);
         setIsLoggedIn(false);
-        // 오류 방지를 위해 절대 경로 사용
         if ("TURBOPACK compile-time truthy", 1) {
             window.location.href = `${window.location.origin}/`;
         }
@@ -38,6 +43,7 @@ function Navbar() {
     const handleReservationLookupClick = ()=>{
         if ("TURBOPACK compile-time truthy", 1) {
             const origin = window.location.origin;
+            // 로그인 상태라면 내 예약 페이지로, 아니면 조회 페이지로
             if (isLoggedIn) {
                 window.location.href = `${origin}/my/reservations`;
             } else {
@@ -63,12 +69,12 @@ function Navbar() {
                                     children: "CaravanShare"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Navbar.tsx",
-                                    lineNumber: 54,
+                                    lineNumber: 60,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Navbar.tsx",
-                                lineNumber: 53,
+                                lineNumber: 59,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -80,17 +86,17 @@ function Navbar() {
                                         children: "Explore Caravans"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Navbar.tsx",
-                                        lineNumber: 60,
+                                        lineNumber: 66,
                                         columnNumber: 15
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    user?.role !== 'GUEST' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: handleReservationLookupClick,
                                         className: "text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-indigo-500 text-sm font-medium transition-colors focus:outline-none",
                                         children: "예약 조회"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Navbar.tsx",
-                                        lineNumber: 67,
-                                        columnNumber: 15
+                                        lineNumber: 76,
+                                        columnNumber: 17
                                     }, this),
                                     user?.role === 'HOST' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                         href: "/caravans/new",
@@ -98,19 +104,19 @@ function Navbar() {
                                         children: "카라반 등록"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Navbar.tsx",
-                                        lineNumber: 77,
+                                        lineNumber: 86,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Navbar.tsx",
-                                lineNumber: 59,
+                                lineNumber: 65,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Navbar.tsx",
-                        lineNumber: 52,
+                        lineNumber: 58,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -123,7 +129,7 @@ function Navbar() {
                                     children: "결제 내역"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Navbar.tsx",
-                                    lineNumber: 92,
+                                    lineNumber: 101,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -132,7 +138,7 @@ function Navbar() {
                                     children: "내 예약"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Navbar.tsx",
-                                    lineNumber: 99,
+                                    lineNumber: 108,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -141,7 +147,7 @@ function Navbar() {
                                     children: "내 프로필"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Navbar.tsx",
-                                    lineNumber: 105,
+                                    lineNumber: 114,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -150,7 +156,7 @@ function Navbar() {
                                     children: "로그아웃"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Navbar.tsx",
-                                    lineNumber: 111,
+                                    lineNumber: 120,
                                     columnNumber: 17
                                 }, this)
                             ]
@@ -160,28 +166,28 @@ function Navbar() {
                             children: "로그인"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.tsx",
-                            lineNumber: 119,
+                            lineNumber: 128,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/Navbar.tsx",
-                        lineNumber: 88,
+                        lineNumber: 97,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Navbar.tsx",
-                lineNumber: 49,
+                lineNumber: 55,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/Navbar.tsx",
-            lineNumber: 48,
+            lineNumber: 54,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Navbar.tsx",
-        lineNumber: 47,
+        lineNumber: 53,
         columnNumber: 5
     }, this);
 }

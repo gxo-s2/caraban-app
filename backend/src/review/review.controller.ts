@@ -1,13 +1,16 @@
 import { Request, Response } from 'express';
-import { ReviewService } from './review.service';
+// ✅ [수정] 클래스가 아닌 함수들을 직접 import 합니다.
+import * as reviewService from './review.service';
 
-const reviewService = new ReviewService();
+// ❌ [삭제] 클래스 인스턴스 생성 코드 제거
+// const reviewService = new ReviewService();
 
 export const createReview = async (req: Request, res: Response) => {
   try {
-    const { userID, caravanId, rating, comment } = req.body;
+    const { authorId, caravanId, rating, comment } = req.body;
 
-    if (!userID || !caravanId || rating === undefined || !comment) {
+    // 유효성 검사
+    if (!authorId || !caravanId || rating === undefined || !comment) {
       return res.status(400).json({ message: 'Missing required fields.' });
     }
     
@@ -15,14 +18,22 @@ export const createReview = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Rating must be a number between 1 and 5.' });
     }
 
-    const newReview = await reviewService.createReview(userID, caravanId, rating, comment);
+    // ✅ [수정] 함수 직접 호출
+    const newReview = await reviewService.createReview({
+      authorId, 
+      caravanId, 
+      rating, 
+      comment
+    });
+    
     res.status(201).json(newReview);
   } catch (error: any) {
+    console.error('리뷰 생성 실패:', error);
     res.status(500).json({ message: error.message });
   }
 };
 
-export const getReviewsForCaravan = async (req: Request, res: Response) => {
+export const getReviewsByCaravanId = async (req: Request, res: Response) => {
   try {
     const { caravanId } = req.params;
 
@@ -30,9 +41,14 @@ export const getReviewsForCaravan = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Caravan ID is required.' });
     }
 
-    const reviews = await reviewService.getReviewsForCaravan(caravanId);
+    // ✅ [수정] 함수 직접 호출
+    const reviews = await reviewService.getReviewsByCaravanId(caravanId);
     res.status(200).json(reviews);
   } catch (error: any) {
+    console.error('리뷰 조회 실패:', error);
     res.status(500).json({ message: error.message });
   }
 };
+
+// 라우터에서 사용하는 함수명과 일치시키기 위해 추가 (선택 사항)
+export const getCaravanReviews = getReviewsByCaravanId;

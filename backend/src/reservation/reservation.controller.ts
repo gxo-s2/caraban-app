@@ -21,7 +21,7 @@ export const createReservation = async (req: Request, res: Response) => {
 
     res.status(201).json(newReservation);
   } catch (error: any) {
-    // 🚨 여기가 핵심입니다! 에러의 진짜 내용을 클라이언트로 보냅니다.
+    // 🚨 여기가 핵심입니다! 에러의 진짜 내용을 클라이언트에 전달합니다.
     console.error('🔥 백엔드 예약 생성 실패:', error);
     
     // Prisma 에러 메시지를 포함하여 응답
@@ -58,6 +58,20 @@ export const updateReservationStatus = async (req: Request, res: Response) => {
     const { status } = req.body;
     const updatedReservation = await reservationService.updateReservationStatus(id, status);
     res.status(200).json(updatedReservation);
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// ✅ [추가] 예약 조회 (비회원용)
+export const lookupReservation = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const reservation = await reservationService.getReservationById(id);
+    if (!reservation) {
+      return res.status(404).json({ message: '예약 정보를 찾을 수 없습니다.' });
+    }
+    res.status(200).json(reservation);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }

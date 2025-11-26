@@ -1,37 +1,37 @@
 import { Router } from 'express';
-// ✅ [중요] 방금 수정한 컨트롤러의 함수들을 가져옵니다.
 import { 
   createReservation, 
   getUserReservations, 
   getHostReservations, 
-  updateReservationStatus 
+  updateReservationStatus,
+  lookupReservation // ✅ 컨트롤러에서 만든 조회 함수 import
 } from './reservation.controller';
 
 const router = Router();
 
-// 🔍 [디버깅] 요청이 이 라우터 파일까지 들어오는지 확인하는 로그 미들웨어
-router.use((req, res, next) => {
-  console.log(`🛣️ [Router] 요청 도착: ${req.method} ${req.originalUrl}`);
-  next();
-});
-
 // ==========================================
-// Guest Routes
+// Guest Routes (게스트용)
 // ==========================================
 
+// 예약 생성
 router.post('/', createReservation);
 
-// ✅ [수정] Express 라우터 핸들러 등록 방식 수정
-// 기존: getUserReservations(req, res).catch(next) -> Express가 함수 자체를 원함
-// 수정: getUserReservations 함수 자체를 전달하거나, async 핸들러 래퍼 사용
+// ✅ [중요] 비회원 예약 조회 (로그인 없이 접근 가능)
+// 이 라우트가 '/user/:userId' 보다 위에 있어야 안전하게 매칭될 수 있습니다.
+router.get('/lookup/:id', lookupReservation);
+
+// 내 예약 조회 (로그인 유저용)
 router.get('/user/:userId', getUserReservations);
 
 
 // ==========================================
-// Host Routes
+// Host Routes (호스트용)
 // ==========================================
 
+// 호스트의 카라반에 들어온 예약 조회
 router.get('/host/:hostId', getHostReservations);
+
+// 예약 상태 변경 (승인/거절/취소)
 router.patch('/:id/status', updateReservationStatus);
 
 export default router;
