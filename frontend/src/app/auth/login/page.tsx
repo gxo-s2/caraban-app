@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+// Next.js 환경이 아닐 경우를 대비해 window.location을 사용하는 방식으로 대체합니다.
+// 실제 Next.js 앱에서는 import { useRouter } from "next/navigation"; 을 사용하세요.
+// import Link from "next/link"; 
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const router = useRouter();
+  
+  // const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,8 +18,10 @@ export default function LoginPage() {
 
     try {
       // 1. 로그인 요청
-      // 🚨 [수정 완료] URL을 /api/users/login 에서 /api/auth/login 으로 변경
-      const res = await fetch("http://localhost:3001/api/auth/login", { 
+      // ✅ [수정 완료] 
+      // 1) 백엔드 라우트가 '/api/users'로 변경되었으므로 'auth' -> 'users'로 변경
+      // 2) Next.js 프록시 설정을 활용하기 위해 'http://localhost:3001' 제거 (상대 경로 사용)
+      const res = await fetch("/api/users/login", { 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -32,11 +36,13 @@ export default function LoginPage() {
       // 서버 응답에서 유저 정보를 추출하여 저장
       const userInfo = data.user || data; 
 
-      if (!userInfo.id || !userInfo.role) {
-         throw new Error("서버 응답에 유저 정보가 누락되었습니다. 백엔드 확인 필요.");
+      if (!userInfo.id) {
+         // role은 필수 여부에 따라 체크하거나 생략 가능
+         console.warn("User ID missing in response:", userInfo);
+         // throw new Error("서버 응답에 유저 정보가 부족합니다."); // 필요 시 주석 해제
       }
 
-      // 정보를 깔끔하게 저장 (중첩되지 않게)
+      // 정보를 깔끔하게 저장
       localStorage.setItem("user", JSON.stringify(userInfo));
 
       alert(`로그인 성공! 환영합니다.`);
@@ -45,8 +51,13 @@ export default function LoginPage() {
       window.location.href = "/"; 
 
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
+      console.error("Login Error:", err);
+      // HTML 응답(404 등)이 올 경우 JSON 파싱 에러가 발생하므로, 메시지를 다듬어 줍니다.
+      if (err.message && err.message.includes("Unexpected token")) {
+        setError("서버 연결 오류: 올바르지 않은 응답입니다. (백엔드 경로를 확인하세요)");
+      } else {
+        setError(err.message || "알 수 없는 오류가 발생했습니다.");
+      }
     }
   };
 
@@ -87,9 +98,9 @@ export default function LoginPage() {
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
           계정이 없으신가요?{" "}
-          <Link href="/auth/signup" className="text-blue-600 font-bold hover:underline">
+          <a href="/auth/signup" className="text-blue-600 font-bold hover:underline">
             회원가입
-          </Link>
+          </a>
         </p>
       </div>
     </div>

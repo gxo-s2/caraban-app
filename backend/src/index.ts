@@ -1,34 +1,70 @@
-import 'dotenv/config'; // 환경 변수 로드
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 
-// 🚨 [가장 중요한 부분] 회원 인증 라우터 import (이 줄이 빠지면 오류 발생)
-import userRouter from './user/user.controller'; // user 라우터 로직 import
-import caravanRoutes from './caravan/caravan.routes'; // 카라반 라우터 import
-import reservationRoutes from './reservation/reservation.routes'; // 예약 라우터 import
-import paymentRoutes from './payment/payment.routes'; // 결제 라우터 import
-import reviewRoutes from './review/review.routes'; // 리뷰 라우터 import
+// 라우터 import
+import userRoutes from './user/user.routes';
+import caravanRoutes from './caravan/caravan.routes';
+import reservationRoutes from './reservation/reservation.routes';
+import paymentRoutes from './payment/payment.routes';
+import reviewRoutes from './review/review.routes';
+
+console.log("Starting CaravanShare Backend Server...");
 
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors()); // CORS 활성화
-app.use(express.json()); // JSON 파싱 활성화
+// CORS 설정
+const allowedOrigins = [
+  'http://localhost:3000', 
+  'http://localhost:3002',
+];
 
+const options: cors.CorsOptions = {
+  origin: allowedOrigins,
+  credentials: true,
+};
+
+app.use(cors(options));
+app.use(express.json());
+
+// 기본 라우트
 app.get('/', (req, res) => {
-  res.send('Hello, CaravanShare backend!');
+  res.send('Hello, CaravanShare backend is running!');
 });
 
-// 🚨 [최종 연결] 회원 인증 라우터를 /api/auth 경로에 연결
-app.use('/api/auth', userRouter); 
-
-// 다른 도메인 라우터 연결 (API 경로 접두사 설정)
+// API 라우터 연결
+app.use('/api/users', userRoutes);
 app.use('/api/caravans', caravanRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/reviews', reviewRoutes);
 
-
-app.listen(port, () => {
-  console.log(`CaravanShare backend listening at http://localhost:${port}`);
+// 🛑 중요: 서버 객체를 변수에 담아 관리
+const server = app.listen(port, () => {
+  console.log(`✅ CaravanShare backend listening at http://localhost:${port}`);
 });
+
+// 🚑 [Clean Exit 방지 1] 강제 심폐소생 (Heartbeat)
+// Node.js 이벤트 루프가 비어버려서 종료되는 것을 막기 위해 10분마다 살아있음을 알림
+setInterval(() => {
+  console.log('💓 Backend server is active...');
+}, 1000 * 60 * 10);
+
+// 🚑 [Clean Exit 방지 2] 프로세스 종료 이벤트 감지
+// 어디선가 강제로 종료하려고 할 때 로그를 남김
+process.on('exit', (code) => {
+  console.log(`About to exit with code: ${code}`);
+});
+
+// 🚑 [Clean Exit 방지 3] 종료 시그널 핸들링 (Ctrl+C 등)
+const gracefulShutdown = () => {
+  console.log('Received kill signal, shutting down gracefully');
+  server.close(() => {
+    console.log('Closed out remaining connections');
+    process.exit(0);
+  });
+};
+
+process.on('SIGTERM', gracefulShutdown);
+process.on('SIGINT', gracefulShutdown);

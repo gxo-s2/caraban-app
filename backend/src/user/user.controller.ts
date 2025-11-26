@@ -1,14 +1,11 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import { UserService } from './user.service';
-import { Role, User } from '@prisma/client';
-import bcrypt from 'bcryptjs'; // 비밀번호 비교용 라이브러리
+import { Role } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
-const router = Router();
 const userService = new UserService();
 
-// 1. 회원가입 (경로 수정 완료)
-// 🚨 [수정 완료] '/register' -> '/signup'으로 변경 (프론트엔드와 경로 통일)
-router.post('/signup', async (req: Request, res: Response) => {
+export const signUp = async (req: Request, res: Response) => {
   try {
     const { email, password, name, contactNumber, profilePicture, role } = req.body;
 
@@ -16,12 +13,10 @@ router.post('/signup', async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Email, password, and name are required.' });
     }
 
-    // Role 유효성 검사
     if (role && !Object.values(Role).includes(role)) {
       return res.status(400).json({ message: `Invalid role: ${role}. Must be one of ${Object.values(Role).join(', ')}.` });
     }
 
-    // 이미 존재하는 유저 확인
     const existingUser = await userService.findUserByEmail(email);
     if (existingUser) {
       return res.status(409).json({ message: 'User with this email already exists.' });
@@ -38,18 +33,14 @@ router.post('/signup', async (req: Request, res: Response) => {
     };
 
     const newUser = await userService.createUser(userData);
-    
-    // 비밀번호는 응답에서 제외
-    const { password: _, ...userWithoutPassword } = newUser as User;
-    res.status(201).json(userWithoutPassword);
+    res.status(201).json(newUser);
 
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
-});
+};
 
-// 2. 로그인
-router.post('/login', async (req: Request, res: Response) => {
+export const logIn = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
@@ -57,25 +48,69 @@ router.post('/login', async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Email and password are required.' });
     }
 
-    // 유저 찾기
     const user = await userService.findUserByEmail(email);
     if (!user) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // 비밀번호 비교
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // 로그인 성공!
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } = user;
     res.status(200).json(userWithoutPassword);
 
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
-});
+};
 
-export default router;
+/**
+ * Get a user's profile information by their ID.
+ * GET /api/users/:id
+ */
+export const getUser = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const user = await userService.getUserProfile(id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
+        
+        res.status(200).json(user);
+
+    } catch (error: any) {
+        console.error("Error fetching user profile:", error);
+        res.status(500).json({ message: error.message || 'Failed to fetch user profile.' });
+    }
+};
+
+/**
+ * Update a user's profile information (name, contact number).
+ * PATCH /api/users/:id
+ */
+export const updateUser = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const { name, contactNumber } = req.body;
+
+        if (!name && !contactNumber) {
+            return res.status(400).json({ message: 'Update data is required (name or contactNumber).' });
+        }
+
+        const updatedUser = await userService.updateUserProfile(id, { name, contactNumber });
+        res.status(200).json(updatedUser);
+
+    } catch (error: any) {
+        console.error("Error updating user profile:", error);
+        
+        if (error.message.includes('not found')) {
+            return res.status(404).json({ message: 'User not found for update.' });
+        }
+
+        res.status(500).json({ message: error.message || 'Failed to update user profile.' });
+    }
+};

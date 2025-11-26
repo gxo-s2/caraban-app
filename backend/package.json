@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "TZ=Asia/Seoul LANG=ko_KR.UTF-8 nodemon --exec tsx src/index.ts",
+    "dev": "nodemon", 
     "build": "tsc"
   },
   "keywords": [],

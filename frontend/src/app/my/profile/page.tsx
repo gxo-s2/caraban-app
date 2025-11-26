@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 // User 타입이 '@/types/user'에서 올바르게 import 되었다고 가정합니다.
 import { User } from '@/types/user'; 
-import axios from 'axios'; // fetch 대신 axios를 사용하여 오류 처리의 일관성을 확보합니다.
 
-// 백엔드 서버 주소 (모든 API 호출에 사용)
-const API_BASE_URL = 'http://localhost:3001/api/users'; 
+// 🚨 API_BASE_URL 상수를 제거하고 상대 경로를 사용하여 Next.js 프록시 설정을 활용합니다.
+// 백엔드 경로가 'http://localhost:3001/api/users'라고 가정하면, 
+// 프론트에서는 '/api/users'로 요청을 보냅니다.
+const API_PREFIX = '/api/users'; // Next.js가 3001로 프록시해주기를 기대합니다.
 
 const ProfilePage = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -16,11 +18,14 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [showUpdateSuccess, setShowUpdateSuccess] = useState(false); // Alert 대신 사용할 상태
   const router = useRouter();
 
   // 1. 사용자 정보 조회 (GET /api/users/:id)
   useEffect(() => {
     const fetchUser = async () => {
+      // 🚨 [중요: LocalStorage 대신 Firebase 사용 권장]
+      // 실제 프로덕션 환경에서는 localStorage 대신 안전한 인증 및 Firestore를 사용해야 합니다.
       const storedUser = localStorage.getItem('user');
       if (!storedUser) {
         router.push('/auth/login');
@@ -34,12 +39,12 @@ const ProfilePage = () => {
       }
 
       try {
-        // 🚨 [수정 1] 절대 경로로 변경: http://localhost:3001/api/users/${userId}
-        const response = await axios.get(`${API_BASE_URL}/${userId}`);
+        // ✅ 수정된 경로: 상대 경로 사용. Next.js가 설정된 프록시 규칙에 따라 
+        // 이 요청을 'http://localhost:3001/api/users/{userId}'로 전달할 것입니다.
+        const response = await axios.get(`${API_PREFIX}/${userId}`);
         
-        if (response.status !== 200) {
-          throw new Error('Failed to fetch user data');
-        }
+        // Next.js 개발 서버를 사용하고 있다면, `response.status !== 200` 검사는 Axios의
+        // catch 블록에서 처리되므로 제거하거나 2xx 코드만 검사하는 것이 좋습니다.
         
         const data: User = response.data;
         setUser(data);
@@ -47,8 +52,8 @@ const ProfilePage = () => {
         setContactNumber(data.contactNumber || '');
         
       } catch (err: any) {
-        console.error('Fetch Error:', err);
-        // 404/500 에러 메시지 처리
+        console.error('Fetch Error (404 Likely):', err);
+        // 404/500 에러 처리
         setError(err.response?.data?.message || 'Failed to fetch user data');
       } finally {
         setLoading(false);
@@ -61,21 +66,18 @@ const ProfilePage = () => {
   // 2. 사용자 정보 업데이트 (PATCH /api/users/:id)
   const handleUpdate = async () => {
     if (!user) return;
-    setLoading(true); // 업데이트 중 로딩 상태 활성화
+    setLoading(true);
 
     try {
-      const response = await axios.patch(`${API_BASE_URL}/${user.id}`, {
+      // ✅ 수정된 경로: 상대 경로 사용
+      const response = await axios.patch(`${API_PREFIX}/${user.id}`, {
         name,
         contactNumber,
       });
 
-      if (response.status !== 200) {
-        throw new Error('Failed to update user data');
-      }
-
       const updatedUser: User = response.data;
       
-      // LocalStorage도 업데이트 (이름, 연락처)
+      // LocalStorage 업데이트
       const currentStoredUser = JSON.parse(localStorage.getItem('user') || '{}');
       localStorage.setItem('user', JSON.stringify({
         ...currentStoredUser,
@@ -88,7 +90,8 @@ const ProfilePage = () => {
       setName(updatedUser.name);
       setContactNumber(updatedUser.contactNumber || '');
       setIsEditing(false);
-      alert("프로필이 성공적으로 업데이트되었습니다.");
+      setShowUpdateSuccess(true); // 성공 알림 표시
+      setTimeout(() => setShowUpdateSuccess(false), 3000); // 3초 후 숨김
 
     } catch (err: any) {
       console.error('Update Error:', err);
@@ -98,12 +101,33 @@ const ProfilePage = () => {
     }
   };
 
+  // ----------------------------------------------------------------------
+  // 렌더링 로직
+  // ----------------------------------------------------------------------
   if (loading) {
     return <div className="flex justify-center items-center h-screen">Loading...</div>;
   }
 
+  // 🚨 [수정 3] 에러 발생 시 UI 개선: Failed to fetch user data 메시지 표시
   if (error) {
-    return <div className="flex justify-center items-center h-screen text-red-500 font-bold text-xl p-8">{error}</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-red-600 bg-red-100 p-6 rounded-lg shadow-xl text-center">
+          <p className="text-xl font-bold mb-2">Error</p>
+          <p className="text-lg">{error}</p>
+          <p className="mt-4 text-sm text-red-500">
+            (Hint: 백엔드 서버가 'http://localhost:3001'에서 실행 중인지, 
+            API 경로 '{API_PREFIX}/{user?.id || 'ID'}'가 유효한지 확인하세요.)
+          </p>
+          <button 
+             onClick={() => router.push('/')}
+             className="mt-3 text-white bg-red-500 hover:bg-red-700 py-1 px-3 rounded-md"
+          >
+             Go Home
+          </button>
+        </div>
+      </div>
+    );
   }
 
   if (!user) {
@@ -111,66 +135,71 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">My Profile</h1>
-      <div className="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto">
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
-          {isEditing ? (
+    <div className="container mx-auto px-4 py-8 relative">
+      {/* 성공 알림 모달/메시지 */}
+      {showUpdateSuccess && (
+        <div className="absolute top-0 right-0 mt-4 mr-4 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg transition duration-300">
+          프로필이 성공적으로 업데이트되었습니다.
+        </div>
+      )}
+
+      <h1 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">
+        {user.name} 님의 프로필
+      </h1>
+      <div className="bg-white shadow-2xl border border-gray-100 rounded-xl p-8 max-w-lg mx-auto transform transition duration-500 hover:scale-[1.01]">
+        <div className="space-y-6">
+          <ProfileField label="Name" isEditing={isEditing} value={name}>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150"
             />
-          ) : (
-            <p className="text-gray-900 font-medium">{user.name}</p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
-          <p className="text-gray-900">{user.email}</p>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Contact Number</label>
-          {isEditing ? (
+          </ProfileField>
+
+          <ProfileField label="Email" isEditing={false} value={user.email}>
+            <p className="text-gray-900 font-medium">{user.email}</p>
+          </ProfileField>
+
+          <ProfileField label="Contact Number" isEditing={isEditing} value={contactNumber}>
             <input
               type="text"
               value={contactNumber}
               onChange={(e) => setContactNumber(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="mt-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150"
             />
-          ) : (
-            <p className="text-gray-900">{user.contactNumber || 'Not provided'}</p>
-          )}
+          </ProfileField>
+
+          <ProfileField label="Rating" isEditing={false} value={user.rating}>
+            <p className="text-gray-900 font-medium">{user.rating ? `${user.rating.toFixed(1)} / 5.0` : 'No ratings yet'}</p>
+          </ProfileField>
+
+          <div className="pt-2">
+            <label className="block text-sm font-semibold text-gray-600 mb-2">Identity Verification</label>
+            <span
+              className={`px-3 py-1 text-xs font-bold leading-tight rounded-full shadow ${
+                user.isVerified ? 'bg-green-500 text-white' : 'bg-yellow-500 text-white'
+              }`}
+            >
+              {user.isVerified ? 'Verified' : 'Pending Verification'}
+            </span>
+          </div>
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Rating</label>
-          {/* 🚨 [수정 2] user.rating이 없을 경우 오류 방지 처리 */}
-          <p className="text-gray-900">{user.rating ? `${user.rating.toFixed(1)} / 5.0` : 'No ratings yet'}</p>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Identity Verification</label>
-          <span
-            className={`px-3 py-1 text-sm font-semibold leading-tight rounded-full ${
-              user.isVerified ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-            }`}
-          >
-            {user.isVerified ? 'Verified' : 'Not Verified'}
-          </span>
-        </div>
-        <div className="mt-6">
+        
+        <div className="mt-8 flex justify-end space-x-4 border-t pt-6">
           {isEditing ? (
             <>
               <button
                 onClick={handleUpdate}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-3"
+                disabled={loading}
+                className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-150 disabled:opacity-50"
               >
-                Save Changes
+                {loading ? 'Saving...' : 'Save Changes'}
               </button>
               <button
                 onClick={() => { setIsEditing(false); setName(user.name); setContactNumber(user.contactNumber || ''); }}
-                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                disabled={loading}
+                className="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-150 disabled:opacity-50"
               >
                 Cancel
               </button>
@@ -178,7 +207,7 @@ const ProfilePage = () => {
           ) : (
             <button
               onClick={() => setIsEditing(true)}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-150"
             >
               Edit Profile
             </button>
@@ -188,5 +217,15 @@ const ProfilePage = () => {
     </div>
   );
 };
+
+// 재사용 가능한 필드 컴포넌트
+const ProfileField = ({ label, isEditing, children, value }: { label: string, isEditing: boolean, children: React.ReactNode, value: any }) => (
+  <div>
+    <label className="block text-sm font-semibold text-gray-600 mb-1">{label}</label>
+    {isEditing ? children : (
+      <p className="text-gray-900 font-medium bg-gray-50 p-2 rounded-md border border-gray-200">{value}</p>
+    )}
+  </div>
+);
 
 export default ProfilePage;

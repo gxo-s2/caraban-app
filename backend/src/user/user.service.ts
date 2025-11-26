@@ -33,4 +33,49 @@ export class UserService {
     const { password, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }
+
+  /**
+   * Get a user's profile information by their ID.
+   * @param userId The ID of the user.
+   */
+  async getUserProfile(userId: string): Promise<Partial<User> | null> {
+    return prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        contactNumber: true,
+        role: true,
+        isVerified: true,
+        // Assuming 'rating' is not a direct field but calculated,
+        // or needs to be added to the schema.
+        // For now, we omit it as per the instructions.
+      },
+    });
+  }
+
+  /**
+   * Update a user's profile information.
+   * @param userId The ID of the user to update.
+   * @param data The data to update (name and/or contactNumber).
+   */
+  async updateUserProfile(
+    userId: string,
+    data: { name?: string; contactNumber?: string }
+  ): Promise<Partial<User>> {
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: data,
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        contactNumber: true,
+        role: true,
+        isVerified: true,
+      },
+    });
+    return updatedUser;
+  }
 }

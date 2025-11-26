@@ -1,12 +1,6 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/auth/login/page": "app/auth/login/page.js",
-  "/auth/signup/page": "app/auth/signup/page.js",
-  "/caravans/[id]/page": "app/caravans/[id]/page.js",
-  "/caravans/page": "app/caravans/page.js",
-  "/host/caravans/new/page": "app/host/caravans/new/page.js",
-  "/host/reservations/page": "app/host/reservations/page.js",
-  "/my/payments/page": "app/my/payments/page.js",
-  "/my/profile/page": "app/my/profile/page.js",
-  "/page": "app/page.js"
+  "/my/reservations/page": "app/my/reservations/page.js",
+  "/page": "app/page.js",
+  "/reservations/lookup/page": "app/reservations/lookup/page.js"
 }

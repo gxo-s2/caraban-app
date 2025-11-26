@@ -1,23 +1,45 @@
 import { Router } from 'express';
+// ✅ [중요] 방금 수정한 컨트롤러의 함수들을 가져옵니다.
 import { 
   createReservation, 
-  getMyReservations, 
-  getReservationsForHost, 
-  updateReservationStatus 
+  getUserReservations, 
+  getHostReservations, 
+  updateReservationStatus,
+  lookupReservation
 } from './reservation.controller';
 
 const router = Router();
 
-// Note: In a real app, these routes would be protected
-// and user IDs would be extracted from an authentication token.
+// 🔍 [디버깅] 요청이 이 라우터 파일까지 들어오는지 확인하는 로그 미들웨어
+router.use((req, res, next) => {
+  console.log(`🛣️ [Router] 요청 도착: ${req.method} ${req.originalUrl}`);
+  next();
+});
 
-// For Guests
+// ==========================================
+// Public Routes
+// ==========================================
+router.get('/lookup/:id', lookupReservation);
+
+
+// ==========================================
+// Guest Routes
+// ==========================================
+
 router.post('/', createReservation);
-router.get('/my', getMyReservations);
 
-// For Hosts
-router.get('/host/:hostId', getReservationsForHost);
-router.patch('/:reservationId/status', updateReservationStatus);
+// ✅ [핵심] 프론트엔드가 호출하는 경로 (/user/:userId)
+router.get('/user/:userId', (req, res, next) => {
+  console.log('🔎 [Router] GET /user/:userId 매칭됨. 컨트롤러로 이동합니다.');
+  getUserReservations(req, res).catch(next);
+});
 
+
+// ==========================================
+// Host Routes
+// ==========================================
+
+router.get('/host/:hostId', getHostReservations);
+router.patch('/:id/status', updateReservationStatus);
 
 export default router;

@@ -1,31 +1,15 @@
+'use client'; 
+
 import Link from 'next/link';
 
 export default function HomePage() {
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex-shrink-0">
-              <Link href="/" className="text-2xl font-bold text-indigo-600">
-                CaravanShare
-              </Link>
-            </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <Link href="/" className="text-gray-500 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Home
-                </Link>
-                <Link href="/caravans" className="bg-indigo-100 text-indigo-700 px-3 py-2 rounded-md text-sm font-medium">
-                  Explore Caravans
-                </Link>
-                {/* Add more links here later, e.g., Login, Register */}
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
+      
+      {/* ✅ 수정 완료:
+        1. Header와 Footer 태그 제거 (layout.tsx에서 중복 방지)
+        2. 불필요한 useEffect, axios, useState 제거 (404 에러 해결)
+      */}
 
       {/* Main Content */}
       <main className="flex-grow">
@@ -49,15 +33,7 @@ export default function HomePage() {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-white">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-base text-gray-400">
-            &copy; {new Date().getFullYear()} CaravanShare. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      
     </div>
   );
 }

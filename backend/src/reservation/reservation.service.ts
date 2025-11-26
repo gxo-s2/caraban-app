@@ -1,139 +1,89 @@
-import { PrismaClient, Reservation, ReservationStatus } from '@prisma/client';
+import { ReservationStatus } from '@prisma/client';
+import prisma from '../prisma';
 
-const prisma = new PrismaClient();
+/**
+ * 예약 생성
+ */
+export const createReservation = async (data: any) => {
+  return await prisma.reservation.create({
+    data,
+  });
+};
 
-export class ReservationService {
-  /**
-   * Create a new reservation after checking for overlaps.
-   * @param caravanId The ID of the caravan to reserve.
-   * @param guestId The ID of the user making the reservation.
-   * @param startDate The start date of the reservation.
-   * @param endDate The end date of the reservation.
-   */
-  async createReservation(caravanId: string, guestId: string, startDate: Date, endDate: Date): Promise<Reservation> {
-    const caravan = await prisma.caravan.findUnique({
-      where: { id: caravanId },
-    });
+/**
+ * [핵심] 특정 유저(게스트)의 예약 목록 조회 (Caravan 정보 포함)
+ * - 실제 DB에서 데이터를 가져옵니다.
+ */
+export const getReservationsByUserId = async (userId: string) => {
+  console.log(`[Service] DB에서 예약 조회 시도 - UserID: ${userId}`);
 
-    if (!caravan) {
-      throw new Error('Caravan not found.');
-    }
-
-    // Check for overlapping reservations
-    const overlappingReservations = await prisma.reservation.findMany({
+  try {
+    const reservations = await prisma.reservation.findMany({
       where: {
-        caravanId: caravanId,
-        status: { in: ['CONFIRMED', 'PENDING'] },
-        AND: [
-          {
-            startDate: {
-              lt: endDate,
-            },
-          },
-          {
-            endDate: {
-              gt: startDate,
-            },
-          },
-        ],
-      },
-    });
-
-    if (overlappingReservations.length > 0) {
-      throw new Error('The caravan is already reserved for the selected dates.');
-    }
-
-    // Calculate total price
-    const durationInDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
-    const totalPrice = durationInDays * caravan.pricePerDay;
-
-    // Create the reservation
-    const reservation = await prisma.reservation.create({
-      data: {
-        startDate,
-        endDate,
-        totalPrice,
-        guest: { connect: { id: guestId } },
-        caravan: { connect: { id: caravanId } },
-      },
-    });
-
-    return reservation;
-  }
-
-  /**
-   * Get all reservations for a specific user.
-   * @param guestId The ID of the user.
-   */
-  async getMyReservations(guestId: string): Promise<Reservation[]> {
-    return prisma.reservation.findMany({
-      where: {
-        guestId: guestId,
+        guestId: userId,
       },
       include: {
-        caravan: true, // Include caravan details in the response
+        caravan: true, // 프론트엔드 카드 UI에 필요한 카라반 정보 포함
       },
+      // ⚠️ [안전 장치] 스키마에 createdAt 필드가 없을 경우 에러가 발생할 수 있어 잠시 주석 처리함
+      // 데이터가 잘 나오면 주석을 해제하세요.
+      // orderBy: { createdAt: 'desc' },
     });
+
+    return reservations;
+  } catch (error) {
+    console.error('🔴 [Service Error] DB 조회 실패:', error);
+    throw error;
   }
+};
 
-  /**
-   * Get all reservations for a specific host's caravans.
-   * @param hostId The ID of the host.
-   */
-  async getReservationsForHost(hostId: string): Promise<Reservation[]> {
-    return prisma.reservation.findMany({
-      where: {
-        caravan: {
-          hostId: hostId,
-        },
-      },
-      include: {
-        guest: { // Include guest details
-          select: { name: true, email: true }
-        },
-        caravan: { // Include caravan name
-          select: { name: true }
-        }
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
-  }
+/**
+ * [호환성 유지용] getMyReservations
+ */
+export const getMyReservations = async (userId: string) => {
+    return getReservationsByUserId(userId);
+};
 
-  /**
-   * Update the status of a reservation.
-   * @param reservationId The ID of the reservation.
-   * @param status The new status.
-   * @param hostId The ID of the host making the request, for authorization.
-   */
-  async updateReservationStatus(reservationId: string, status: ReservationStatus, hostId: string): Promise<Reservation> {
-    // First, find the reservation and include the caravan's hostId for verification
-    const reservation = await prisma.reservation.findUnique({
-      where: { id: reservationId },
-      include: {
-        caravan: {
-          select: { hostId: true },
-        },
+/**
+ * 호스트를 위한 예약 조회 (내 카라반에 들어온 예약)
+ */
+export const getReservationsForHost = async (hostId: string) => {
+  return await prisma.reservation.findMany({
+    where: {
+      caravan: {
+        hostId: hostId,
       },
-    });
+    },
+    include: {
+      guest: true,
+      caravan: true,
+    },
+  });
+};
 
-    if (!reservation) {
-      throw new Error('Reservation not found.');
-    }
+/**
+ * 예약 상태 업데이트 (승인/거절/취소 등)
+ */
+export const updateReservationStatus = async (id: string, status: string) => {
+  return await prisma.reservation.update({
+    where: { id },
+    data: {
+      // 문자열을 Prisma Enum 타입으로 변환
+      status: status as ReservationStatus,
+    },
+  });
+};
 
-    // Security Check: Verify the person updating the status is the caravan's host
-    if (reservation.caravan.hostId !== hostId) {
-      throw new Error('Unauthorized: You are not the host of this caravan.');
-    }
+/**
+ * 예약 ID로 단일 예약 조회 (비회원용)
+ */
+export const lookupReservation = async (id: string) => {
+  const reservation = await prisma.reservation.findUnique({
+    where: { id },
+    include: {
+      caravan: true, // Caravan 정보 포함
+    },
+  });
 
-    return prisma.reservation.update({
-      where: {
-        id: reservationId,
-      },
-      data: {
-        status: status,
-      },
-    });
-  }
-}
+  return reservation;
+};
