@@ -58,7 +58,7 @@ export default function Navbar() {
           <div className="flex items-center gap-8">
             <a href="/" className="flex-shrink-0 flex items-center cursor-pointer">
               <span className="text-2xl font-extrabold text-indigo-600 tracking-tight">
-                CaravanShare
+                CaravanApp
               </span>
             </a>
 

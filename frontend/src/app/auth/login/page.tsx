@@ -11,18 +11,15 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
 
   // 🔐 스마트 간편 로그인 핸들러
-  // ✅ [수정 1] role 타입을 백엔드와 일치시킵니다 ('USER' -> 'GUEST')
   const handleLogin = async (role: 'GUEST' | 'HOST') => {
     setLoading(true);
     setError('');
 
-    // 테스트용 계정 정보
     const credentials = {
-      // ✅ [수정 2] 조건문도 'GUEST'로 변경
       email: role === 'GUEST' ? 'guest@test.com' : 'host@test.com',
       password: 'password123',
       name: role === 'GUEST' ? '테스트 게스트' : '테스트 호스트',
-      role: role, // 이제 'GUEST' 또는 'HOST'가 전송됩니다.
+      role: role,
     };
 
     try {
@@ -30,20 +27,16 @@ export default function LoginPage() {
 
       // 1. 회원가입 시도
       try {
-        console.log('회원가입 시도...');
-        const signupRes = await axios.post('/api/users/signup', credentials);
+        const signupRes = await axios.post('http://127.0.0.1:3001/api/users/signup', credentials);
         user = signupRes.data;
-        console.log('회원가입 성공:', user);
       } catch (err: any) {
-        // 2. 이미 존재하는 계정이라면 -> 로그인 시도
+        // 2. 이미 존재하는 계정(409 Conflict)이라면 -> 로그인 시도
         if (err.response && err.response.status === 409) {
-          console.log('이미 계정이 존재함. 로그인 시도...');
-          const loginRes = await axios.post('/api/users/login', {
+          const loginRes = await axios.post('http://127.0.0.1:3001/api/users/login', {
             email: credentials.email,
             password: credentials.password,
           });
           user = loginRes.data;
-          console.log('로그인 성공:', user);
         } else {
           throw err;
         }
@@ -58,7 +51,6 @@ export default function LoginPage() {
       }
 
     } catch (err: any) {
-      console.error('로그인 프로세스 실패:', err);
       setError(err.response?.data?.message || '로그인 처리에 실패했습니다.');
     } finally {
       setLoading(false);
@@ -72,7 +64,7 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const res = await axios.post('/api/users/login', {
+      const res = await axios.post('http://127.0.0.1:3001/api/users/login', {
         email,
         password,
       });
@@ -86,7 +78,6 @@ export default function LoginPage() {
         throw new Error('유저 정보를 받아오지 못했습니다.');
       }
     } catch (err: any) {
-      console.error('로그인 실패:', err);
       setError(err.response?.data?.message || '이메일 또는 비밀번호가 올바르지 않습니다.');
     } finally {
       setLoading(false);
@@ -118,7 +109,6 @@ export default function LoginPage() {
             {/* 간편 로그인 버튼들 */}
             <div>
               <button
-                // ✅ [수정 3] 버튼 클릭 시 'GUEST'를 전달하도록 변경
                 onClick={() => handleLogin('GUEST')}
                 disabled={loading}
                 className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${loading ? 'bg-indigo-400' : 'bg-indigo-600 hover:bg-indigo-700'} focus:outline-none transition-colors mb-3`}
@@ -192,7 +182,8 @@ export default function LoginPage() {
               </div>
               <div className="mt-6 grid grid-cols-1 gap-3">
                 <a
-                  href="/register"
+                  // ✅ [수정됨] /register 대신 /auth/register로 변경
+                  href="/auth/register"
                   className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
                 >
                   회원가입 하기

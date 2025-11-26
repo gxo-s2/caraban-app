@@ -103,13 +103,10 @@ function LoginPage() {
     const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     // 🔐 스마트 간편 로그인 핸들러
-    // ✅ [수정 1] role 타입을 백엔드와 일치시킵니다 ('USER' -> 'GUEST')
     const handleLogin = async (role)=>{
         setLoading(true);
         setError('');
-        // 테스트용 계정 정보
         const credentials = {
-            // ✅ [수정 2] 조건문도 'GUEST'로 변경
             email: role === 'GUEST' ? 'guest@test.com' : 'host@test.com',
             password: 'password123',
             name: role === 'GUEST' ? '테스트 게스트' : '테스트 호스트',
@@ -119,20 +116,16 @@ function LoginPage() {
             let user;
             // 1. 회원가입 시도
             try {
-                console.log('회원가입 시도...');
-                const signupRes = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post('/api/users/signup', credentials);
+                const signupRes = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post('http://127.0.0.1:3001/api/users/signup', credentials);
                 user = signupRes.data;
-                console.log('회원가입 성공:', user);
             } catch (err) {
-                // 2. 이미 존재하는 계정이라면 -> 로그인 시도
+                // 2. 이미 존재하는 계정(409 Conflict)이라면 -> 로그인 시도
                 if (err.response && err.response.status === 409) {
-                    console.log('이미 계정이 존재함. 로그인 시도...');
-                    const loginRes = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post('/api/users/login', {
+                    const loginRes = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post('http://127.0.0.1:3001/api/users/login', {
                         email: credentials.email,
                         password: credentials.password
                     });
                     user = loginRes.data;
-                    console.log('로그인 성공:', user);
                 } else {
                     throw err;
                 }
@@ -145,7 +138,6 @@ function LoginPage() {
                 throw new Error('유저 정보를 받아오지 못했습니다.');
             }
         } catch (err) {
-            console.error('로그인 프로세스 실패:', err);
             setError(err.response?.data?.message || '로그인 처리에 실패했습니다.');
         } finally{
             setLoading(false);
@@ -157,7 +149,7 @@ function LoginPage() {
         setLoading(true);
         setError('');
         try {
-            const res = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post('/api/users/login', {
+            const res = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post('http://127.0.0.1:3001/api/users/login', {
                 email,
                 password
             });
@@ -169,7 +161,6 @@ function LoginPage() {
                 throw new Error('유저 정보를 받아오지 못했습니다.');
             }
         } catch (err) {
-            console.error('로그인 실패:', err);
             setError(err.response?.data?.message || '이메일 또는 비밀번호가 올바르지 않습니다.');
         } finally{
             setLoading(false);
@@ -186,7 +177,7 @@ function LoginPage() {
                         children: "CaravanShare 로그인"
                     }, void 0, false, {
                         fileName: "[project]/src/app/auth/login/page.tsx",
-                        lineNumber: 99,
+                        lineNumber: 90,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -195,20 +186,20 @@ function LoginPage() {
                             "개발 및 테스트를 위한 자동 로그인 페이지입니다.",
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                 fileName: "[project]/src/app/auth/login/page.tsx",
-                                lineNumber: 103,
+                                lineNumber: 94,
                                 columnNumber: 38
                             }, this),
                             "(DB가 초기화되어도 자동으로 복구됩니다)"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/auth/login/page.tsx",
-                        lineNumber: 102,
+                        lineNumber: 93,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/auth/login/page.tsx",
-                lineNumber: 98,
+                lineNumber: 89,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -221,7 +212,7 @@ function LoginPage() {
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/src/app/auth/login/page.tsx",
-                            lineNumber: 112,
+                            lineNumber: 103,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -230,14 +221,13 @@ function LoginPage() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            // ✅ [수정 3] 버튼 클릭 시 'GUEST'를 전달하도록 변경
                                             onClick: ()=>handleLogin('GUEST'),
                                             disabled: loading,
                                             className: `w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${loading ? 'bg-indigo-400' : 'bg-indigo-600 hover:bg-indigo-700'} focus:outline-none transition-colors mb-3`,
                                             children: loading ? '처리 중...' : '게스트(여행자)로 간편 로그인'
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/auth/login/page.tsx",
-                                            lineNumber: 120,
+                                            lineNumber: 111,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -247,7 +237,7 @@ function LoginPage() {
                                             children: "호스트(카라반 주인)로 간편 로그인"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/auth/login/page.tsx",
-                                            lineNumber: 129,
+                                            lineNumber: 119,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -255,13 +245,13 @@ function LoginPage() {
                                             children: "* 테스트용 자동 가입/로그인 버튼입니다."
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/auth/login/page.tsx",
-                                            lineNumber: 137,
+                                            lineNumber: 127,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/auth/login/page.tsx",
-                                    lineNumber: 119,
+                                    lineNumber: 110,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -273,12 +263,12 @@ function LoginPage() {
                                                 className: "w-full border-t border-gray-300"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/auth/login/page.tsx",
-                                                lineNumber: 144,
+                                                lineNumber: 134,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/auth/login/page.tsx",
-                                            lineNumber: 143,
+                                            lineNumber: 133,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -288,18 +278,18 @@ function LoginPage() {
                                                 children: "또는 이메일 로그인"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/auth/login/page.tsx",
-                                                lineNumber: 147,
+                                                lineNumber: 137,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/auth/login/page.tsx",
-                                            lineNumber: 146,
+                                            lineNumber: 136,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/auth/login/page.tsx",
-                                    lineNumber: 142,
+                                    lineNumber: 132,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -314,7 +304,7 @@ function LoginPage() {
                                                     children: "이메일"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/auth/login/page.tsx",
-                                                    lineNumber: 154,
+                                                    lineNumber: 144,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -326,13 +316,13 @@ function LoginPage() {
                                                     className: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/auth/login/page.tsx",
-                                                    lineNumber: 155,
+                                                    lineNumber: 145,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/auth/login/page.tsx",
-                                            lineNumber: 153,
+                                            lineNumber: 143,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -343,7 +333,7 @@ function LoginPage() {
                                                     children: "비밀번호"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/auth/login/page.tsx",
-                                                    lineNumber: 165,
+                                                    lineNumber: 155,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -355,13 +345,13 @@ function LoginPage() {
                                                     className: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/auth/login/page.tsx",
-                                                    lineNumber: 166,
+                                                    lineNumber: 156,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/auth/login/page.tsx",
-                                            lineNumber: 164,
+                                            lineNumber: 154,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -371,13 +361,13 @@ function LoginPage() {
                                             children: "로그인"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/auth/login/page.tsx",
-                                            lineNumber: 175,
+                                            lineNumber: 165,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/auth/login/page.tsx",
-                                    lineNumber: 152,
+                                    lineNumber: 142,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -392,12 +382,12 @@ function LoginPage() {
                                                         className: "w-full border-t border-gray-300"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/auth/login/page.tsx",
-                                                        lineNumber: 187,
+                                                        lineNumber: 177,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/auth/login/page.tsx",
-                                                    lineNumber: 186,
+                                                    lineNumber: 176,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -407,63 +397,64 @@ function LoginPage() {
                                                         children: "계정이 없으신가요?"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/auth/login/page.tsx",
-                                                        lineNumber: 190,
+                                                        lineNumber: 180,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/auth/login/page.tsx",
-                                                    lineNumber: 189,
+                                                    lineNumber: 179,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/auth/login/page.tsx",
-                                            lineNumber: 185,
+                                            lineNumber: 175,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "mt-6 grid grid-cols-1 gap-3",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                                href: "/register",
+                                                // ✅ [수정됨] /register 대신 /auth/register로 변경
+                                                href: "/auth/register",
                                                 className: "w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50",
                                                 children: "회원가입 하기"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/auth/login/page.tsx",
-                                                lineNumber: 194,
+                                                lineNumber: 184,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/auth/login/page.tsx",
-                                            lineNumber: 193,
+                                            lineNumber: 183,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/auth/login/page.tsx",
-                                    lineNumber: 184,
+                                    lineNumber: 174,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/auth/login/page.tsx",
-                            lineNumber: 117,
+                            lineNumber: 108,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/auth/login/page.tsx",
-                    lineNumber: 109,
+                    lineNumber: 100,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/auth/login/page.tsx",
-                lineNumber: 108,
+                lineNumber: 99,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/auth/login/page.tsx",
-        lineNumber: 97,
+        lineNumber: 88,
         columnNumber: 5
     }, this);
 }
